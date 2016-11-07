@@ -1,0 +1,7 @@
+# standard maven ignores
+target/
+
+# eclipse project ignores
+/.settings/
+/.classpath
+/.project
