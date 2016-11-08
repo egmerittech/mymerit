@@ -5,13 +5,13 @@
 
 
 	<parent>
-		<groupId>com.github.egmerittech</groupId>
-		<artifactId>mymerit</artifactId>
+		<groupId>com.github.egmerittech.mymerit</groupId>
+		<artifactId>mymerit-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 
-	<artifactId>mymerit.model</artifactId>
+	<artifactId>mymerit-model</artifactId>
 	<packaging>jar</packaging>
 
 
