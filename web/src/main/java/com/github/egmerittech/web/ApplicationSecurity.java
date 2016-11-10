@@ -43,15 +43,18 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.and()
 
 			// splash page should be unprotected
-//			.authorizeRequests()
-//				.antMatchers("/").permitAll()
-//				.and()
+			.authorizeRequests()
+				.antMatchers("/").permitAll()
+				.and()
 
 			// static content should be unprotected
 			.authorizeRequests()
 				.antMatchers("/assets/**").permitAll()
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/h2-console/**").permitAll()
+				.antMatchers("/auth/sign-in").permitAll()
+				.antMatchers("/auth/sign-out").permitAll()
+				.antMatchers("/auth/sign-up").permitAll()
 				.and()
 
 			// resources requiring specific roles

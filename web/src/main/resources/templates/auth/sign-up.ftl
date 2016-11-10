@@ -38,18 +38,9 @@
 					<div class="col-md-6">
 						<p>Sign up...</p>
 
-						<@macros.textInput "command.email"/>
+						<@macros.textInput path="signupBean.email" placeholderKey="signupBean.email.placeholder" hideLabel=true attributes="required autofocus"/>
+						<@macros.textInput path="signupBean.password" placeholderKey="signupBean.password.placeholder" hideLabel=true attributes="required"/>
 
-						<div class="form-group">
-							<label for="email" class="sr-only">Email Address</label>
-							<input type="email" id="email" name="email" class="form-control" placeholder="Your email address" required autofocus>
-						</div>
-						
-						<div class="form-group">
-							<label for="password" class="sr-only">Password</label>
-							<input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required>
-						</div>
-						
 						<div class="form-group">
 							<label><input type="checkbox" name="remember-me" id="remember-me"> Remember me</label>
 						</div>
