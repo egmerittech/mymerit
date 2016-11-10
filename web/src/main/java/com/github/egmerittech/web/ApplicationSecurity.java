@@ -3,11 +3,14 @@ package com.github.egmerittech.web;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 /**
  * @author Greg Baker
@@ -23,7 +26,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.jdbcAuthentication()
-				.dataSource(dataSource).withDefaultSchema()
+				.dataSource(dataSource)
 				.passwordEncoder(new BCryptPasswordEncoder())
 				.withUser("admin@localhost").password(new BCryptPasswordEncoder().encode("password")).roles("USER", "ADMIN");
 
@@ -40,9 +43,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.and()
 
 			// splash page should be unprotected
-			.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.and()
+//			.authorizeRequests()
+//				.antMatchers("/").permitAll()
+//				.and()
 
 			// static content should be unprotected
 			.authorizeRequests()
@@ -63,9 +66,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 			.formLogin()
 				.loginPage("/auth/sign-in")
-//				.loginProcessingUrl("/sign-in")
 				.failureUrl("/auth/sign-in?error")
-//				.defaultSuccessUrl("/")
 				.usernameParameter("email")
 				.passwordParameter("password")
 				.permitAll()
@@ -78,9 +79,22 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 
+			.rememberMe()
+				.tokenRepository(tokenRepository())
+				.tokenValiditySeconds(1209600)
+				.and()
+
 			.exceptionHandling()
 				.accessDeniedPage("/access-denied")
 				.and();
+	}
+
+
+	@Bean
+	public PersistentTokenRepository tokenRepository() {
+		final JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+		tokenRepository.setDataSource(dataSource);
+		return tokenRepository;
 	}
 
 }
