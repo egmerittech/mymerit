@@ -8,14 +8,6 @@ import org.hibernate.validator.constraints.Length;
  */
 public class SignupBean {
 
-	@Length(max = 256)
-	private String firstName;
-
-
-	@Length(max = 256)
-	private String lastName;
-
-
 	@Email
 	private String email;
 
@@ -24,24 +16,8 @@ public class SignupBean {
 	private String password;
 
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-
-	public void setFirstName(String name) {
-		this.firstName = name;
-	}
-
-
-	public String getLastName() {
-		return lastName;
-	}
-
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	@Length(min = 6, max = 256)
+	private String passwordMatch;
 
 
 	public String getEmail() {
@@ -61,6 +37,16 @@ public class SignupBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getPasswordMatch() {
+		return passwordMatch;
+	}
+
+
+	public void setPasswordMatch(String passwordMatch) {
+		this.passwordMatch = passwordMatch;
 	}
 
 }
