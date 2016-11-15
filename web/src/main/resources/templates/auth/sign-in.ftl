@@ -13,14 +13,10 @@
 
 		<title>Sign In</title>
 
-		<link href="${contextroot}/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${contextroot}/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-		<link href="${contextroot}/assets/css/sign-in.css" rel="stylesheet">
-
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+				integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+				integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	</head>
 
 	<body>
@@ -41,6 +37,5 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>
 		</div>
-		<script src="${contextroot}/assets/js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 </html>

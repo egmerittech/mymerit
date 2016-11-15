@@ -36,22 +36,29 @@
 <#--
  * textInput
  *
+ * Sample from getbootstrap.com:
+ * <div class="form-group has-error">
+ * 	<label class="control-label" for="inputError1">Input with error</label>
+ * 	<input type="text" class="form-control" id="inputError1">
+ * </div>
+ *
  * @param path the name of the field to bind to
  * @param attributes any additional attributes for the element (such as class or CSS styles or size)
  * @param messageKey key to lookup in resource bundle, defaults to path
  * @param type input type: defaults to "text"
 -->
-<#macro textInput path attributes="" messageKey=path type="text">
-    <@spring.bind path/>
-    <#assign error><#if spring.status.errorMessages?has_content>error</#if></#assign>
-	<div class="control-group ${error}">	
-        <#assign id="${spring.status.expression?replace('[','')?replace(']','')}">
-		<label class="control-label" for="${id}"><@spring.message messageKey/></label>
-		<div class="controls">
-	    	<input type="${type}" id="${id}" name="${spring.status.expression}" value="${spring.stringStatusValue}" ${attributes}>
-	  		<#if error?has_content><span class="help-inline">${spring.status.errorMessages?first}</span></#if>		
-	  		<#nested>
-		</div>
+<#macro textInput path messageKey=path placeholderKey="" hideLabel=false type="text" attributes="">
+	<@spring.bind path/>
+	
+	<#assign id="${spring.status.expression?replace('[','')?replace(']','')}">
+	<#assign hasError><#if spring.status.errorMessages?has_content>has-error</#if></#assign>
+	<#assign placeholder><#if placeholderKey?has_content><@spring.message placeholderKey/></#if></#assign>
+	<#assign srOnly><#if hideLabel>sr-only</#if></#assign>
+	
+	<div class="form-group ${hasError}">	
+		<label class="control-label ${srOnly}" for="${id}"><@spring.message messageKey/></label>
+		<input type="${type}" class="form-control" id="${id}" name="${spring.status.expression}" value="${spring.stringStatusValue}" placeholder="${placeholder}" ${attributes}>
+		<#if hasError?has_content><span class="help-block">${spring.status.errorMessages?first}</span></#if>		
 	</div>
 </#macro>
 
@@ -126,16 +133,8 @@
  * @param buttonStyle extra classes to add to button (defaults to "save-button")
  * @param controlGroup should the input be wrapped in a Bootstrap .control-group with a .controls? (defaults to true)
 -->
-<#macro submitButton value=rc.getMessage('button.save') buttonStyle="save-button" controlGroup=true>
-<#if controlGroup>
-  	<div class="control-group">	
-   		<div class="controls">
-</#if>
-			<input type="submit" value="${value}" class="${buttonStyle}">
-<#if controlGroup>
-  		</div>
-	</div>
-</#if>
+<#macro submitButton messageKey="button.submit" class="btn btn-default">
+	<button type="submit" class="${class}"><@spring.message messageKey/></button>
 </#macro>
 
 <#--
@@ -191,19 +190,32 @@
  *
  * Show a single checkbox.
  *
+ * Sample from getbootstrap.com:
+ * <div class="has-error">
+ * 	<div class="checkbox">
+ * 		<label>
+ * 			<input type="checkbox" id="checkboxError" value="option1"> Checkbox with error
+ * 		</label>
+ * 	</div>
+ * </div>
+ *
  * @param path the name of the field to bind to
  * @param messageKey resource key to lookup, defaults to path
  * @param attributes any additional attributes for the element (such as class or CSS styles or size)
 -->
 <#macro checkbox path messageKey=path attributes="">
 	<@spring.bind path />
+	
     <#assign id="${spring.status.expression?replace('[','')?replace(']','')}">
-    <#assign isSelected = spring.status.value?? && spring.status.value?string=="true">
-	<input type="hidden" name="_${id}" value="on"/>
-	<div class="control-group">			
-		<label class="control-label" for="${id}"><@spring.message messageKey/></label>
-		<div class="controls">
-		    <input type="checkbox" id="${id}" name="${id}"<#if isSelected> checked="checked"</#if> ${attributes}/>
-		</div>	
+    <#assign checked><#if spring.status.value?? && spring.status.value?string=="true">checked</#if></#assign>
+	<#assign hasError><#if spring.status.errorMessages?has_content>has-error</#if></#assign>
+	
+	<div class="${has-error}">
+		<input type="hidden" name="_${id}" value="on"/>
+		<div class="checkbox">	
+			<label>
+				<input type="checkbox" id="${id}" name="${id}" ${checked} ${attributes}/> <@spring.message messageKey/>
+			</label>
+		</div>
 	</div>
 </#macro>

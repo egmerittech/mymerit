@@ -8,12 +8,40 @@ import org.hibernate.validator.constraints.Length;
  */
 public class SignupBean {
 
+	@Length(max = 256)
+	private String firstName;
+
+
+	@Length(max = 256)
+	private String lastName;
+
+
 	@Email
 	private String email;
 
 
 	@Length(min = 6, max = 256)
 	private String password;
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String name) {
+		this.firstName = name;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 
 	public String getEmail() {
