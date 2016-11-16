@@ -1,6 +1,5 @@
-<#import "/macros.ftl" as macros/>
 <#import "/spring.ftl" as spring/>
-<#assign contextroot><@spring.url ''/></#assign>
+<#global contextroot>${rc.contextPath}</#global>
 <#macro render pagetitle pagesubtitle="" windowtitle="">
 	<!DOCTYPE html>
 	<html lang="en">
@@ -58,10 +57,10 @@
 	
 			<div class="container">
 				<div class="row">
-						<div class="col-lg-12">
-							<h1>${pagetitle}</h1>
-							<#if pagesubtitle?has_content><p class="lead"><em>${pagesubtitle}</em></p></#if>
-						</div>
+					<div class="col-lg-12">
+						<h1>${pagetitle}</h1>
+						<#if pagesubtitle?has_content><p class="lead"><em>${pagesubtitle}</em></p></#if>
+					</div>
 				</div>
 
 				<main>
