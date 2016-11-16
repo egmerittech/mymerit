@@ -3,9 +3,7 @@
 <#macro formInput path label placeholder="" attributes="" fieldType="text">
 	<@spring.bind path/>
 	<#assign id = spring.status.expression?replace('[','')?replace(']','')/>
-	<#assign error><#if spring.status.errorMessages?has_content>has-error</#if></#assign>
-	[hasErrors: ${spring.status.errors.hasErrors()?c}]
-	[isError: ${spring.status.isError()?c}]
+	<#assign error><#if spring.status.isError()>has-error</#if></#assign>
 	<div class="form-group ${error}">
 		<label class="control-label" for="${id}">${label}</label>
 		<input class="form-control" type="${fieldType}" id="${id}" name="${spring.status.expression}"
