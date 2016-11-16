@@ -1,5 +1,5 @@
 <#ftl strip_whitespace=true>
-<#import "spring.ftl" as spring />
+<#import "/spring.ftl" as spring/>
 
 <#-- This file contains form-related macros for use in the other Freemarker template files.
      The generated HTML is intended for use with Twitter Bootstrap based forms. -->

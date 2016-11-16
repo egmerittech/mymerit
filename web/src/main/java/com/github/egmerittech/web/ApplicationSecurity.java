@@ -39,6 +39,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 
 			.headers()
+				.cacheControl().disable()
 				.frameOptions().disable()
 				.and()
 
