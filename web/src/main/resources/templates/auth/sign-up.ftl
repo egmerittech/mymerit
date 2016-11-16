@@ -3,7 +3,7 @@
 <@template.render pagetitle="Join myMerit" pagesubtitle="The best way to feel good about yourself.">
 
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<div class="well">
 				<form method="post">
 					<fieldset>
