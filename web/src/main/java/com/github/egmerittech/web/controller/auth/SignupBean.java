@@ -16,6 +16,10 @@ public class SignupBean {
 	private String password;
 
 
+	@Length(min = 6, max = 256)
+	private String passwordMatch;
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -33,6 +37,16 @@ public class SignupBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getPasswordMatch() {
+		return passwordMatch;
+	}
+
+
+	public void setPasswordMatch(String passwordMatch) {
+		this.passwordMatch = passwordMatch;
 	}
 
 }

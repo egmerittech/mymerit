@@ -20,7 +20,7 @@ public class AuthenticationController {
 
 	@PostMapping("/auth/sign-up")
 	public String signUp(@ModelAttribute SignupBean signupBean) {
-		return "";
+		return "redirect:/auth/sign-in";
 	}
 
 

@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring/>
+<#assign contextroot><@spring.url ''/></#assign>
 <#macro render title>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -6,91 +8,91 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-			<title>${title}</title>
+			<meta name="description" content="">
+			<meta name="author" content="">
+			<link rel="icon" href="${contextroot}/assets/favicon.ico">
 	
-			<link rel="stylesheet" crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-					integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="/>
-			
-			<!--[if lt IE 9]>
-				<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-			<![endif]-->
+			<title>myMerit</title>
+	
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+					integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N" crossorigin="anonymous">
 		</head>
-		
+	
 		<body>
-			<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar">test</span>
+						<a href="../" class="navbar-brand">myMerit</a>
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="#" class="navbar-brand">myMerit</a>
 					</div>
 					
-					<div id="navbar" class="navbar-collapse collapse">
-						<div class="navbar-form navbar-right">
-							<a href="#" class="btn btn-default">Sign In</a>
-							<a href="#" class="btn btn-success">Sign Up</a>
-						</div>
-<#--
-						<s:if test="%{#attr['user'] == 'anonymousUser'}">
-							<div class="navbar-form navbar-right">
-								<s:a action="login" cssClass="btn btn-success">Stub Login</s:a>
-							</div>
-						</s:if>
-						<s:else>
-							<form method="post" action="#" class="navbar-form navbar-right">
-								<a href="#" class="btn btn-link">Greg</a>
-								<s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
-								<button type="submit" class="btn btn-success">Log out</button>
-							</form>
-						</s:else>
--->
+					<div class="navbar-collapse collapse" id="navbar-main">
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+								<ul class="dropdown-menu" aria-labelledby="themes">
+									<li><a href="../default/">Default</a></li>
+									<li class="divider"></li>
+									<li><a href="../cerulean/">Cerulean</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="../help/">Help</a>
+							</li>
+							<li>
+								<a href="http://news.bootswatch.com">Blog</a>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Simplex <span class="caret"></span></a>
+								<ul class="dropdown-menu" aria-labelledby="download">
+									<li><a href="http://jsfiddle.net/bootswatch/3he50zsf/">Open Sandbox</a></li>
+									<li class="divider"></li>
+									<li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+									<li><a href="./bootstrap.css">bootstrap.css</a></li>
+									<li class="divider"></li>
+									<li><a href="./variables.less">variables.less</a></li>
+									<li><a href="./bootswatch.less">bootswatch.less</a></li>
+									<li class="divider"></li>
+									<li><a href="./_variables.scss">_variables.scss</a></li>
+									<li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+								</ul>
+							</li>
+						</ul>
+	
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+							<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+						</ul>
+	
 					</div>
-				</div>
-			</nav>
-			
-			<!-- Main jumbotron for a primary marketing message or call to action -->
-			<div class="jumbotron">
-				<div class="container">
-					<h1>${title}</h1>
-					<#nested/>
 				</div>
 			</div>
 			
 			<div class="container">
-				<!-- Example row of columns -->
-				<div class="row">
-					<div class="col-md-4">
-						<h2>Unsecured Page</h2>
-						<p>Click the button below to access an <strong>unsecured</strong> page.</p>
-						<p><s:a namespace="/" action="index" cssClass="btn btn-default" role="button">Unsecured &raquo;</s:a></p>
-					</div>
-					<div class="col-md-4">
-						<h2>Authenticated Page</h2>
-						<p>Click the button below to access an <strong>authenticated</strong> page.</p>
-						<p><s:a namespace="/auth" action="index" cssClass="btn btn-default" role="button">Authenticated &raquo;</s:a></p>
-					</div>
-					<div class="col-md-4">
-						<h2>Admin Page</h2>
-						<p>Click the button below to access an <strong>admin</strong> page.</p>
-						<p><s:a namespace="/admin" action="index" cssClass="btn btn-default" role="button">Admin &raquo;</s:a></p>
+				<div class="page-header" id="banner">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1>Sign up</h1>
+							<p class="lead">You must have a myMerit account in order to use this service. Please sign up using the form below.</p>
+						</div>
 					</div>
 				</div>
-			
-				<hr>
-			
-				<footer>
-					<p>&copy; Greg Baker 2015</p>
-				</footer>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<#nested/>
+					</div>
+				</div>
 			</div>
-	
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" crossorigin="anonymous"
-					integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="></script>		
+			
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+					integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+			<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+					integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		</body>
 	</html>
 </#macro>
