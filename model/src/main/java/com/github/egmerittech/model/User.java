@@ -23,8 +23,8 @@ public class User extends AbstractEntity {
 	protected Boolean enabled = Boolean.TRUE;
 
 
-	@Column(nullable = false)
 	protected Boolean validated = Boolean.FALSE;
+
 
 
 	public String getUsername() {
