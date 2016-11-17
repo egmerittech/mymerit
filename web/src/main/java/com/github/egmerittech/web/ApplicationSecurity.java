@@ -30,12 +30,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder());
 	}
 
-	
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/assets/**");
 	}
-	
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -73,7 +73,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 			.formLogin()
 				.loginPage("/auth/sign-in")
-				.failureUrl("/auth/sign-in?error")
+				.failureUrl("/auth/sign-in?status=autherror")
 				.usernameParameter("email")
 				.passwordParameter("password")
 				.permitAll()
@@ -82,7 +82,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 			.logout()
 				.deleteCookies("remember-me")
 				.logoutUrl("/auth/sign-out")
-				.logoutSuccessUrl("/auth/sign-in?logout")
+				.logoutSuccessUrl("/auth/sign-in?status=signedout")
 				.permitAll()
 				.and()
 

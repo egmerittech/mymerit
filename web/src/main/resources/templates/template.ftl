@@ -49,7 +49,17 @@
 							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Help</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Greg Baker <span class="caret"/></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a>Signed in as <strong>Greg Baker</strong></a></li>
+									<li class="divider"/>
+									<li><a href="#">Your profile</a></li>
+									<li><a href="#">Help</a></li>
+									<li class="divider"/>
+									<li><a href="${contextroot}/auth/sign-out">Sign out</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -71,6 +81,17 @@
 							<div class="alert alert-dismissible alert-danger">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
 								<@spring.message dangerAlert/>
+							</div>
+						</div>
+					</div>
+				</#if>
+				
+				<#if successAlert??>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="alert alert-dismissible alert-success">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<@spring.message successAlert/>
 							</div>
 						</div>
 					</div>

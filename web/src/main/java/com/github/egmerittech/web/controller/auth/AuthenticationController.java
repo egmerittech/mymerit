@@ -67,8 +67,9 @@ public class AuthenticationController {
 
 
 	@GetMapping("/auth/sign-in")
-	public String signIn(Model model, String error) {
-		if (error != null) { model.addAttribute("dangerAlert", "signin.autherror"); }
+	public String signIn(Model model, String status) {
+		if ("autherror".equals(status) == true) { model.addAttribute("dangerAlert", "signin.autherror"); }
+		if ("signedout".equals(status) == true) { model.addAttribute("successAlert", "signin.signedout"); }
 		return "/auth/sign-in";
 	}
 
