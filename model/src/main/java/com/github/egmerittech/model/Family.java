@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
  * @author Greg Baker
  */
 @Entity
+@SuppressWarnings("serial")
 public class Family extends AbstractEntity {
 
 	protected String familyName;

@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
  * @author Greg Baker
  */
 @Entity
+@SuppressWarnings("serial")
 public class Transaction extends AbstractEntity {
 
 	@ManyToOne

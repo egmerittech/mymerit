@@ -6,6 +6,7 @@ import javax.persistence.Entity;
  * @author Greg Baker
  */
 @Entity
+@SuppressWarnings("serial")
 public class MeritAccount extends AbstractEntity {
 
 	protected Double balance;

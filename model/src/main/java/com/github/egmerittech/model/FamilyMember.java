@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
  * @author Greg Baker
  */
 @Entity
+@SuppressWarnings("serial")
 public class FamilyMember extends AbstractEntity {
 
 	public enum Type { PARENT, CHILD }

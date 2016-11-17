@@ -6,6 +6,7 @@ import javax.persistence.Entity;
  * @author Greg Baker
  */
 @Entity
+@SuppressWarnings("serial")
 public class Task extends AbstractEntity {
 
 	protected String name;

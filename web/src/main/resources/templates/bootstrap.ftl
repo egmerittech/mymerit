@@ -9,6 +9,7 @@
 		<input class="form-control" type="${fieldType}" id="${id}" name="${spring.status.expression}"
 				<#if fieldType != "password">value="${spring.stringStatusValue}"</#if>
 				<#if placeholder != "">placeholder="${placeholder}"</#if> ${attributes}/>
+		<#if error != ""><span class="help-block">${spring.status.errorMessages?first}</span></#if>
 	</div>
 </#macro>
 
