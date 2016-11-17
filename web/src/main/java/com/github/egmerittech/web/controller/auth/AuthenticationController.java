@@ -68,7 +68,7 @@ public class AuthenticationController {
 
 	@GetMapping("/auth/sign-in")
 	public String signIn(Model model, String error) {
-		model.addAttribute("error", error);
+		if (error != null) { model.addAttribute("dangerAlert", "signin.autherror"); }
 		return "/auth/sign-in";
 	}
 

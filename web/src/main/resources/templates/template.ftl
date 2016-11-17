@@ -9,7 +9,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 
 			<meta name="description" content="">
-			<meta name="author" content="">
+			<meta name="author" content="Greg Baker">
 			<link rel="icon" href="${contextroot}/assets/favicon.ico">
 
 			<title>myMerit</title>
@@ -19,7 +19,7 @@
 		</head>
 
 		<body>
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -56,23 +56,30 @@
 			</nav>
 	
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="page-header">
+				<div class="page-header" id="banner">
+					<div class="row">
+						<div class="col-lg-12">
 							<h1>${pagetitle}</h1>
 							<#if pagesubtitle?has_content><p class="lead"><em>${pagesubtitle}</em></p></#if>
 						</div>
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-lg-12">
+				<#if dangerAlert??>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="alert alert-dismissible alert-danger">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<@spring.message dangerAlert/>
+							</div>
+						</div>
 					</div>
-				</div>
-
+				</#if>
 				
 				<main class="row">
-					<#nested/>
+					<div class="col-lg-12">
+						<#nested/>
+					</div>
 				</main>
 
 				<footer>
