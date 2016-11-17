@@ -1,14 +1,15 @@
 package com.github.egmerittech.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
 
 /**
  * @author Greg Baker
  */
 @Entity
-@Table(name = "users")
 @SuppressWarnings("serial")
 public class User extends AbstractEntity {
 
@@ -23,8 +24,12 @@ public class User extends AbstractEntity {
 	protected Boolean enabled = Boolean.TRUE;
 
 
+	@Column(nullable = false)
 	protected Boolean validated = Boolean.FALSE;
 
+
+	@ManyToMany
+	protected List<Role> roles;
 
 
 	public String getUsername() {
@@ -64,6 +69,16 @@ public class User extends AbstractEntity {
 
 	public void setValidated(Boolean validated) {
 		this.validated = validated;
+	}
+
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

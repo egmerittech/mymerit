@@ -8,10 +8,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import com.github.egmerittech.repository.RoleRepository;
+import com.github.egmerittech.repository.UserRepository;
+import com.github.egmerittech.web.security.JpaUserDetailsService;
 
 /**
  * @author Greg Baker
@@ -26,10 +31,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.jdbcAuthentication()
-				.dataSource(dataSource)
-				.passwordEncoder(passwordEncoder())
-				.withUser("admin@localhost").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");
+			.userDetailsService(userDetailsService());
+//			.jdbcAuthentication()
+//				.dataSource(dataSource)
+//				.passwordEncoder(passwordEncoder())
+//				.withUser("admin@localhost").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");
 	}
 
 
@@ -91,6 +97,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 				.accessDeniedPage("/access-denied")
 				.and();
+	}
+
+
+	@Bean
+	public UserDetailsService userDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
+		return new JpaUserDetailsService(userRepository, roleRepository);
 	}
 
 
