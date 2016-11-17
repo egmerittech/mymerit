@@ -23,6 +23,10 @@ public class User extends AbstractEntity {
 	protected Boolean enabled = Boolean.TRUE;
 
 
+	@Column(nullable = false)
+	protected Boolean validated = Boolean.FALSE;
+
+
 	public String getUsername() {
 		return username;
 	}
@@ -50,6 +54,16 @@ public class User extends AbstractEntity {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+
+	public Boolean getValidated() {
+		return validated;
+	}
+
+
+	public void setValidated(Boolean validated) {
+		this.validated = validated;
 	}
 
 }
