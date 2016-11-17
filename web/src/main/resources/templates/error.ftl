@@ -1,4 +1,4 @@
 <#import "/template.ftl" as template/>
-<@template.render title="Error...">
+<@template.render pagetitle="System Error">
 	<p>There has been a system error.</p>
 </@template.render>

@@ -20,7 +20,7 @@ public class User extends AbstractEntity {
 
 
 	@Column(nullable = false)
-	protected Boolean enabled;
+	protected Boolean enabled = Boolean.TRUE;
 
 
 	public String getUsername() {

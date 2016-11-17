@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -27,9 +28,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		auth
 			.jdbcAuthentication()
 				.dataSource(dataSource)
-				.passwordEncoder(new BCryptPasswordEncoder())
-				.withUser("admin@localhost").password(new BCryptPasswordEncoder().encode("password")).roles("USER", "ADMIN");
-
+				.passwordEncoder(passwordEncoder())
+				.withUser("admin@localhost").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");
 	}
 
 
@@ -99,6 +99,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		final JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
 		tokenRepository.setDataSource(dataSource);
 		return tokenRepository;
+	}
+
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 }
