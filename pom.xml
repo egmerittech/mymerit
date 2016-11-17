@@ -18,8 +18,6 @@
 	<modules>
 		<module>model</module>
 		<module>repository</module>
-		<module>service-api</module>
-		<module>service-rest</module>
 		<module>web</module>
 	</modules>
 

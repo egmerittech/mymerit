@@ -5,12 +5,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,9 +23,6 @@ import com.github.egmerittech.repository.UserRepository;
 public class AuthenticationController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
-
-
-	private static final ExampleMatcher USERNAME_MATCHER = ExampleMatcher.matching().withMatcher("username", GenericPropertyMatchers.ignoreCase());
 
 
 	@Autowired
@@ -54,14 +48,8 @@ public class AuthenticationController {
 			return "/auth/sign-up";
 		}
 
-		final User probe = new User();
-		probe.setUsername(signupBean.getEmail());
-		final ExampleMatcher matcher = ExampleMatcher.matching()
-				.withMatcher("username", GenericPropertyMatchers.ignoreCase());
-		final Example<User> example = Example.of(probe, matcher);
-		final boolean userExists = userRepository.exists(example);
 
-		if (userExists == true) {
+		if (userExists(signupBean.getEmail()) == true) {
 			bindingResult.reject("signupBean.email.alreadyregistered");
 			return "/auth/sign-up";
 		}
@@ -79,8 +67,14 @@ public class AuthenticationController {
 
 
 	@GetMapping("/auth/sign-in")
-	public String signIn(ModelMap modelMap) {
+	public String signIn(Model model, String error) {
+		model.addAttribute("error", error);
 		return "/auth/sign-in";
+	}
+
+
+	private boolean userExists(String username) {
+		return false;
 	}
 
 }

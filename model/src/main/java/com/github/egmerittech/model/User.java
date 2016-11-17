@@ -1,10 +1,16 @@
 package com.github.egmerittech.model;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 
 /**
  * @author Greg Baker
@@ -21,17 +27,27 @@ public class User extends AbstractEntity {
 
 
 	@Column(nullable = false)
-	protected Boolean enabled = Boolean.TRUE;
+	protected Boolean enabled;
 
 
 	@Column(nullable = false)
-	protected Boolean validated = Boolean.FALSE;
+	protected Boolean validated;
 
 
-	@ManyToMany
-	protected List<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") }) 
+	protected Set<Role> roles;
 
 
+	@Override
+	@PrePersist
+	public void prePersist() {
+		super.prePersist();
+		enabled = Boolean.TRUE;
+		validated = Boolean.FALSE;
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -72,12 +88,12 @@ public class User extends AbstractEntity {
 	}
 
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

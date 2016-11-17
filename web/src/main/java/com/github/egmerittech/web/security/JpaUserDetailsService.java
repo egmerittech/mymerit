@@ -1,8 +1,10 @@
 package com.github.egmerittech.web.security;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.github.egmerittech.model.Role;
 import com.github.egmerittech.model.User;
-import com.github.egmerittech.repository.RoleRepository;
 import com.github.egmerittech.repository.UserRepository;
 
 /**
@@ -21,37 +22,49 @@ import com.github.egmerittech.repository.UserRepository;
  */
 public class JpaUserDetailsService implements UserDetailsService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JpaUserDetailsService.class);
+	
+	
 	protected final UserRepository userRepository;
 
 
-	protected RoleRepository roleRepository;
-
-
 	@Autowired
-	public JpaUserDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
+	public JpaUserDetailsService(UserRepository userRepository) {
 		this.userRepository = userRepository;
-		this.roleRepository = roleRepository;
 	}
 
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		final User exampleUser = new User();
-		exampleUser.setUsername(username);
+		final User user = findUser(username);
 
-		Example<User> example = Example.of(exampleUser);
-		final User user = userRepository.findOne(example);
-
-		if (user == null) { return null; }
+		if (user == null) {
+			LOGGER.debug("User with username [{}] not found", username);
+			return null;
+		}
 
 		final String password = user.getPassword();
-		final List<GrantedAuthority> authorities = new ArrayList<>();
-
-		for (final Role role : user.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getName()));
-		}
+		final Set<GrantedAuthority> authorities = getAuthorities(user);
 
 		return new org.springframework.security.core.userdetails.User(username, password, authorities);
 	}
 
+	
+	protected User findUser(String username) {
+		final User probe = new User();
+		probe.setUsername(username);
+		return userRepository.findOne(Example.of(probe));
+	}
+
+	
+	protected Set<GrantedAuthority> getAuthorities(User user) {
+		final Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+		
+		for (final Role role : user.getRoles()) {
+			authorities.add(new SimpleGrantedAuthority(role.getRole()));
+		}
+
+		return authorities;
+	}
+	
 }

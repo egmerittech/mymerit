@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.github.egmerittech.mymerit</groupId>
-			<artifactId>mymerit-service-rest</artifactId>
+			<artifactId>mymerit-repository</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -63,7 +63,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 	</dependencies>
 
 </project>

@@ -2,10 +2,10 @@ package com.github.egmerittech.web;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
-import com.github.egmerittech.repository.RoleRepository;
 import com.github.egmerittech.repository.UserRepository;
 import com.github.egmerittech.web.security.JpaUserDetailsService;
 
@@ -24,20 +23,19 @@ import com.github.egmerittech.web.security.JpaUserDetailsService;
 @EnableWebSecurity
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
-
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.userDetailsService(userDetailsService());
-//			.jdbcAuthentication()
-//				.dataSource(dataSource)
-//				.passwordEncoder(passwordEncoder())
-//				.withUser("admin@localhost").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");
+			.userDetailsService(userDetailsService(null))
+			.passwordEncoder(passwordEncoder());
 	}
 
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/assets/**");
+	}
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -56,7 +54,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 			// static content should be unprotected
 			.authorizeRequests()
-				.antMatchers("/assets/**").permitAll()
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/h2-console/**").permitAll()
 				.antMatchers("/auth/sign-in").permitAll()
@@ -90,7 +87,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.and()
 
 			.rememberMe()
-				.tokenRepository(tokenRepository())
+				.tokenRepository(tokenRepository(null))
 				.tokenValiditySeconds(1209600)
 				.and()
 
@@ -101,13 +98,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 
 	@Bean
-	public UserDetailsService userDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
-		return new JpaUserDetailsService(userRepository, roleRepository);
+	public UserDetailsService userDetailsService(UserRepository userRepository) {
+		return new JpaUserDetailsService(userRepository);
 	}
 
 
 	@Bean
-	public PersistentTokenRepository tokenRepository() {
+	public PersistentTokenRepository tokenRepository(DataSource dataSource) {
 		final JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
 		tokenRepository.setDataSource(dataSource);
 		return tokenRepository;
