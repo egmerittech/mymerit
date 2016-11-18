@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.github.egmerittech.model.User;
 import com.github.egmerittech.repository.UserRepository;
 import com.github.egmerittech.web.service.UserService;
 
@@ -38,13 +39,13 @@ public class AuthenticationController {
 
 
 	@GetMapping("/auth/sign-up")
-	public String signUpForm(@ModelAttribute SignupBean signupBean) {
+	public String signUpForm(@ModelAttribute User user) {
 		return "/auth/sign-up";
 	}
 
 
 	@PostMapping("/auth/sign-up")
-	public String signUp(@Valid SignupBean signupBean, BindingResult bindingResult) {
+	public String signUp(@Valid User user, BindingResult bindingResult) {
 		LOGGER.debug("Processing sign-up form submission");
 
 		if (bindingResult.hasErrors()) {
@@ -52,14 +53,14 @@ public class AuthenticationController {
 			return "/auth/sign-up";
 		}
 
-		if (userService.exists(signupBean.getEmail()) == true) {
-			LOGGER.debug("User [{}] already exists", signupBean.getEmail());
-			bindingResult.reject("signupBean.email.alreadyregistered");
+		if (userService.exists(user.getUsername()) == true) {
+			LOGGER.debug("User [{}] already exists", user.getUsername());
+			bindingResult.rejectValue("username", "signup.username.alreadyregistered");
 			return "/auth/sign-up";
 		}
 
 		LOGGER.debug("Submitted sign-up form passed validation checks, saving user...");
-		userService.create(signupBean.getEmail(), signupBean.getPassword());
+		userService.create(user.getUsername(), user.getPassword());
 
 		LOGGER.debug("Redirecting user to /auth/sign-up");
 		return "redirect:/auth/sign-up";

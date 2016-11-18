@@ -18,8 +18,8 @@ public class SecurityPrincipalInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		final SecurityContext securityContext = SecurityContextHolder.getContext();
 		if (securityContext != null && securityContext.getAuthentication() != null) {
-			final Object user = securityContext.getAuthentication().getPrincipal();
-			if (user instanceof User) { modelAndView.addObject("user", user); }
+			final Object principal = securityContext.getAuthentication().getPrincipal();
+			if (principal instanceof User) { modelAndView.addObject("principal", principal); }
 		}
 	}
 

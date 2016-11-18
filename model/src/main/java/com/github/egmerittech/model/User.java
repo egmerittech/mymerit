@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.Transient;
 
 /**
  * @author Greg Baker
@@ -18,11 +19,9 @@ import javax.persistence.PrePersist;
 @SuppressWarnings("serial")
 public class User extends AbstractEntity {
 
-	@Column(nullable = false)
 	protected String firstname;
 
 
-	@Column(nullable = false)
 	protected String lastname;
 
 
@@ -31,6 +30,10 @@ public class User extends AbstractEntity {
 
 	@Column(nullable = false)
 	protected String password;
+
+
+	@Transient
+	protected String passwordMatch;
 
 
 	@Column(nullable = false)
@@ -92,6 +95,16 @@ public class User extends AbstractEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getPasswordMatch() {
+		return passwordMatch;
+	}
+
+
+	public void setPasswordMatch(String passwordMatch) {
+		this.passwordMatch = passwordMatch;
 	}
 
 

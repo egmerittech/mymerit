@@ -6,8 +6,8 @@
 				<legend>Sign in</legend>
 				
 				<div class="form-group ">
-					<label for="email" class="control-label">Email Address</label>
-					<input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+					<label for="username" class="control-label">Email Address</label>
+					<input type="email" id="username" name="username" class="form-control" placeholder="Email Address" required>
 				</div>
 				
 				<div class="form-group ">

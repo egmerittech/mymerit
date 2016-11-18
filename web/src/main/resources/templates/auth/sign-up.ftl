@@ -3,21 +3,21 @@
 <#import "/template.ftl" as template/>
 <@template.render pagetitle="Join myMerit">
 	<div class="well">
-		<form name="signupBean" method="post">
+		<form name="user" method="post">
 			<fieldset>
 				<legend>Create your personal account</legend>
 				
-				<@bootstrap.formInput path="signupBean.email"
-						label="${rc.getMessage('signup.email.label')}"
-						placeholder="${rc.getMessage('signup.email.placeholder')}"
+				<@bootstrap.formInput path="user.username"
+						label="${rc.getMessage('signup.username.label')}"
+						placeholder="${rc.getMessage('signup.username.placeholder')}"
 						attributes="required"/>
 				
-				<@bootstrap.formPasswordInput path="signupBean.password"
+				<@bootstrap.formPasswordInput path="user.password"
 						label="${rc.getMessage('signup.password.label')}"
 						placeholder="${rc.getMessage('signup.password.placeholder')}"
 						attributes="required"/>
 
-				<@bootstrap.formPasswordInput path="signupBean.passwordMatch"
+				<@bootstrap.formPasswordInput path="user.passwordMatch"
 						label="${rc.getMessage('signup.passwordMatch.label')}"
 						placeholder="${rc.getMessage('signup.passwordMatch.placeholder')}"
 						attributes="required"/>

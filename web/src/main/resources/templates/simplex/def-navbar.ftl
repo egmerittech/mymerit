@@ -11,12 +11,13 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<#if user??>
+			<#if principal??>
+				<#assign name><#if principal.firstname?? && principal.lastname??>${principal.firstname} ${principal.lastname}<#else/>${principal.username}</#if></#assign>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"/></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a>Signed in as <strong>${user.firstname} ${user.lastname}</strong></a></li>
+							<li><a>Signed in as <strong>${name}</strong></a></li>
 							<li class="divider"/>
 							<li><a href="${contextroot}/auth/profile">Your profile</a></li>
 							<li><a href="${contextroot}/help">Help</a></li>

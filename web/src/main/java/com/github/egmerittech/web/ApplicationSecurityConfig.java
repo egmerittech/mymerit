@@ -1,4 +1,4 @@
-package com.github.egmerittech.web;
+	package com.github.egmerittech.web;
 
 import javax.sql.DataSource;
 
@@ -78,7 +78,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/auth/sign-in")
 				.failureUrl("/auth/sign-in?status=autherror")
-				.usernameParameter("email").passwordParameter("password")
 				.and()
 
 			.logout()
