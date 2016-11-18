@@ -1,7 +1,7 @@
 <#import "/bootstrap.ftl" as bootstrap/>
 <#import "/spring.ftl" as spring/>
 <#import "/template.ftl" as template/>
-<@template.render pagetitle="Join myMerit" pagesubtitle="The best way to feel good about yourself.">
+<@template.render pagetitle="Join myMerit">
 	<div class="well">
 		<form name="signupBean" method="post">
 			<fieldset>
