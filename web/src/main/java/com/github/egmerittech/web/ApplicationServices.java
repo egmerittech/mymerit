@@ -2,14 +2,13 @@ package com.github.egmerittech.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.github.egmerittech.repository.RoleRepository;
 import com.github.egmerittech.repository.UserRepository;
-import com.github.egmerittech.web.service.DefaultRoleService;
-import com.github.egmerittech.web.service.DefaultUserService;
-import com.github.egmerittech.web.service.RoleService;
-import com.github.egmerittech.web.service.UserService;
+import com.github.egmerittech.service.RoleService;
+import com.github.egmerittech.service.UserService;
+import com.github.egmerittech.service.rest.DefaultRoleService;
+import com.github.egmerittech.service.rest.DefaultUserService;
 
 /**
  * @author Greg Baker
@@ -26,8 +25,8 @@ public class ApplicationServices {
 
 
 	@Bean
-	public UserService userService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
-		return new DefaultUserService(userRepository, roleService, passwordEncoder);
+	public UserService userService(UserRepository userRepository, RoleService roleService) {
+		return new DefaultUserService(userRepository, roleService);
 	}
 
 }

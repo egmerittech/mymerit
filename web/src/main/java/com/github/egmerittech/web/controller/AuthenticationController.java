@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.github.egmerittech.model.User;
-import com.github.egmerittech.web.service.UserService;
+import com.github.egmerittech.service.UserService;
 
 /**
  * @author Greg Baker

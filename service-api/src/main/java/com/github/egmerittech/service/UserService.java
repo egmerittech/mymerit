@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.service;
+package com.github.egmerittech.service;
 
 /**
  * @author Greg Baker

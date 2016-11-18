@@ -1,12 +1,13 @@
-package com.github.egmerittech.web.service;
+package com.github.egmerittech.service.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.github.egmerittech.model.User;
 import com.github.egmerittech.repository.UserRepository;
+import com.github.egmerittech.service.RoleService;
+import com.github.egmerittech.service.UserService;
 
 /**
  * @author Greg Baker
@@ -16,19 +17,15 @@ public class DefaultUserService implements UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserService.class);
 
 
-	protected final PasswordEncoder passwordEncoder;
-
-
 	protected final RoleService roleService;
 
 
 	protected final UserRepository userRepository;
 
 
-	public DefaultUserService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
+	public DefaultUserService(UserRepository userRepository, RoleService roleService) {
 		this.userRepository = userRepository;
 		this.roleService = roleService;
-		this.passwordEncoder = passwordEncoder;
 	}
 
 
@@ -37,7 +34,7 @@ public class DefaultUserService implements UserService {
 
 		final User user = new User();
 		user.setUsername(username);
-		user.setPassword(passwordEncoder.encode(password));
+		user.setPassword(password);
 		user.setRoles(roleService.getDefaultRoles());
 
 		LOGGER.debug("Saving user [{}] to data store", username);

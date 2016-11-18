@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.service;
+package com.github.egmerittech.service.rest;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 
 import com.github.egmerittech.model.Role;
 import com.github.egmerittech.repository.RoleRepository;
+import com.github.egmerittech.service.RoleService;
 
 /**
  * @author Greg Baker
