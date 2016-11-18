@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,10 @@ public class AuthenticationController {
 
 	@Autowired
 	protected AuthenticationManager authenticationManager;
+
+
+	@Autowired
+	protected PasswordEncoder passwordEncoder;
 
 
 	@Autowired
@@ -63,7 +68,7 @@ public class AuthenticationController {
 		}
 
 		LOGGER.debug("Submitted sign-up form passed validation checks, saving user...");
-		userService.create(user.getUsername(), user.getPassword());
+		userService.create(user.getUsername(), passwordEncoder.encode(user.getPassword()));
 
 		LOGGER.debug("User successfully created, performing post-creation sign-in...");
 		authenticateUser(user, request);
