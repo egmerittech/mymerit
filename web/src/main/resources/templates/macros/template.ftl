@@ -1,7 +1,7 @@
 <#import "/simplex/template.ftl" as simplex/>
 <#global contextroot>${rc.contextPath}</#global>
-<#macro render pagetitle pagesubtitle="" windowtitle="myMerit">
-	<@simplex.render pagetitle pagesubtitle windowtitle>
+<#macro render windowtitle="" pagetitle="" pagesubtitle="" additionalstylesheets="" additionalscripts="">
+	<@simplex.render windowtitle=windowtitle pagetitle=pagetitle pagesubtitle=pagesibtitle additionalstylesheets=additionalstylesheets additionalscripts=additionalscripts>
 		<#nested/>
 	</@simplex.render>
 </#macro>

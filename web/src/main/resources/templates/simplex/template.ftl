@@ -1,6 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#assign contextroot>${rc.contextPath}</#assign>
-<#macro render pagetitle pagesubtitle="" windowtitle="">
+
+<#macro render windowtitle pagetitle pagesubtitle="" additionalstylesheets="" additionalscripts="">
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -16,6 +17,7 @@
 
 			<link rel="stylesheet" href="${contextroot}/assets/css/bootstrap.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
+			${additionalstylesheets}
 		</head>
 
 		<body>
@@ -36,6 +38,7 @@
 			<script src="${contextroot}/assets/js/jquery.min.js"></script>
 			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
 			<script src="${contextroot}/assets/js/mymerit.js"></script>
+			${additionalscripts}
 		</body>
 	</html>
 </#macro>
