@@ -2,6 +2,7 @@ package com.github.egmerittech.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.EntityLinks;
 
 import com.github.egmerittech.repository.RoleRepository;
 import com.github.egmerittech.repository.UserRepository;
@@ -25,8 +26,8 @@ public class ApplicationServices {
 
 
 	@Bean
-	public UserService userService(UserRepository userRepository, RoleService roleService) {
-		return new DefaultUserService(userRepository, roleService);
+	public UserService userService(UserRepository userRepository, RoleService roleService, EntityLinks entityLinks) {
+		return new DefaultUserService(userRepository, roleService, entityLinks);
 	}
 
 }

@@ -13,6 +13,7 @@
 	<artifactId>mymerit-service-api</artifactId>
 	<packaging>jar</packaging>
 	
+	
 	<name>myMerit - Service API</name>
 	<description>Service API for myMerit project.</description>
 	
