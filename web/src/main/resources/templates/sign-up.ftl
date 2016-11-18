@@ -1,6 +1,6 @@
-<#import "/bootstrap.ftl" as bootstrap/>
 <#import "/spring.ftl" as spring/>
-<#import "/template.ftl" as template/>
+<#import "/macros/bootstrap.ftl" as bootstrap/>
+<#import "/macros/template.ftl" as template/>
 <@template.render pagetitle="Join myMerit">
 	<div class="well">
 		<form name="user" method="post">

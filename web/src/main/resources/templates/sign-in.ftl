@@ -1,4 +1,4 @@
-<#import "/template.ftl" as template/>
+<#import "/macros/template.ftl" as template/>
 <@template.render pagetitle="Sign in to myMerit">
 	<div class="well">
 		<form method="post">
