@@ -28,6 +28,7 @@ public class User extends AbstractEntity {
 	@Column(unique = true, nullable = false)
 	protected String username;
 
+
 	@Column(nullable = false)
 	protected String password;
 
@@ -47,6 +48,10 @@ public class User extends AbstractEntity {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	protected Set<Role> roles;
+
+
+	@Column(length = 2048)
+	protected String comment;
 
 
 	@Override
@@ -135,6 +140,16 @@ public class User extends AbstractEntity {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }
