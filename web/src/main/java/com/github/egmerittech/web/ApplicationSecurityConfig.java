@@ -2,14 +2,15 @@ package com.github.egmerittech.web;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -20,20 +21,31 @@ import com.github.egmerittech.web.security.JpaUserDetailsService;
 /**
  * @author Greg Baker
  */
-@EnableWebSecurity
+@Configuration
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private Environment environment;
+
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.userDetailsService(userDetailsService(null))
-			.passwordEncoder(passwordEncoder());
+			.passwordEncoder(passwordEncoder);
 	}
 
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/assets/**");
+		web
+			.ignoring()
+				.antMatchers("/assets/**")
+				.antMatchers("/h2-console/**");
 	}
 
 
@@ -50,15 +62,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			// splash page should be unprotected
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				.and()
-
-			// static content should be unprotected
-			.authorizeRequests()
-				.antMatchers("/bootstrap/**").permitAll()
-				.antMatchers("/h2-console/**").permitAll()
-				.antMatchers("/auth/sign-in").permitAll()
-				.antMatchers("/auth/sign-out").permitAll()
-				.antMatchers("/auth/sign-up").permitAll()
+				.antMatchers("/auth/**").permitAll()
 				.and()
 
 			// resources requiring specific roles
@@ -74,26 +78,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/auth/sign-in")
 				.failureUrl("/auth/sign-in?status=autherror")
-				.usernameParameter("email")
-				.passwordParameter("password")
-				.permitAll()
+				.usernameParameter("email").passwordParameter("password")
 				.and()
 
 			.logout()
-				.deleteCookies("remember-me")
 				.logoutUrl("/auth/sign-out")
 				.logoutSuccessUrl("/auth/sign-in?status=signedout")
-				.permitAll()
 				.and()
 
 			.rememberMe()
-				.tokenRepository(tokenRepository(null))
-				.tokenValiditySeconds(1209600)
+				.tokenRepository(persistentTokenRepository(null))
+				.tokenValiditySeconds(environment.getProperty("mymerit.security.tokenvalidityseconds", Integer.class))
 				.and()
 
 			.exceptionHandling()
-				.accessDeniedPage("/access-denied")
-				.and();
+				.accessDeniedPage("/access-denied");
 	}
 
 
@@ -104,16 +103,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 	@Bean
-	public PersistentTokenRepository tokenRepository(DataSource dataSource) {
-		final JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-		tokenRepository.setDataSource(dataSource);
-		return tokenRepository;
-	}
-
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+	public PersistentTokenRepository persistentTokenRepository(DataSource dataSource) {
+		final JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
+		persistentTokenRepository.setDataSource(dataSource);
+		return persistentTokenRepository;
 	}
 
 }

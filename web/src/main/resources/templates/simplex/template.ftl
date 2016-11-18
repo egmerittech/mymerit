@@ -35,6 +35,7 @@
 
 			<script src="${contextroot}/assets/js/jquery.min.js"></script>
 			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
+			<script src="${contextroot}/assets/js/mymerit.js"></script>
 		</body>
 	</html>
 </#macro>

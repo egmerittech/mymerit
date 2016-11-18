@@ -18,8 +18,8 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a>Signed in as <strong>${user.firstname} ${user.lastname}</strong></a></li>
 							<li class="divider"/>
-							<li><a href="#">Your profile</a></li>
-							<li><a href="#">Help</a></li>
+							<li><a href="${contextroot}/auth/profile">Your profile</a></li>
+							<li><a href="${contextroot}/help">Help</a></li>
 							<li class="divider"/>
 							<li><a href="${contextroot}/auth/sign-out">Sign out</a></li>
 						</ul>
@@ -27,7 +27,8 @@
 				</ul>
 			<#else/>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="${contextroot}/auth/sign-in">Sign in</a></li>
+					<li><a href="${contextroot}/auth/sign-in">Sign in</a></li>
+					<li class="active"><a href="${contextroot}/auth/sign-up">Sign up</a></li>
 				</ul>
 			</#if>
 		</div>
