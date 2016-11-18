@@ -62,7 +62,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			// splash page should be unprotected
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				.antMatchers("/auth/**").permitAll()
+				.antMatchers("/auth/sign-up").permitAll()
 				.and()
 
 			// resources requiring specific roles
@@ -78,11 +78,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/auth/sign-in")
 				.failureUrl("/auth/sign-in?status=autherror")
+				.permitAll()
 				.and()
 
 			.logout()
 				.logoutUrl("/auth/sign-out")
 				.logoutSuccessUrl("/auth/sign-in?status=signedout")
+				.permitAll()
 				.and()
 
 			.rememberMe()
