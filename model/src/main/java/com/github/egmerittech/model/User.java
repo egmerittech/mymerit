@@ -1,5 +1,6 @@
 package com.github.egmerittech.model;
 
+import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,7 +48,7 @@ public class User extends AbstractEntity {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
-	protected Set<Role> roles;
+	protected Set<Role> roles = Collections.emptySet();
 
 
 	@Column(length = 2048)

@@ -1,6 +1,7 @@
 package com.github.egmerittech.model;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class Family extends AbstractEntity {
 
 
 	@OneToMany(mappedBy = "id")
-	protected List<FamilyMember> familyMembers;
+	protected Set<FamilyMember> familyMembers = Collections.emptySet();
 
 
 	public String getFamilyName() {
@@ -29,12 +30,12 @@ public class Family extends AbstractEntity {
 	}
 
 
-	public List<FamilyMember> getFamilyMembers() {
+	public Set<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
 
 
-	public void setFamilyMembers(List<FamilyMember> familyMembers) {
+	public void setFamilyMembers(Set<FamilyMember> familyMembers) {
 		this.familyMembers = familyMembers;
 	}
 

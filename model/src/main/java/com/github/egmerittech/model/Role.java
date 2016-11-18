@@ -1,5 +1,6 @@
 package com.github.egmerittech.model;
 
+import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ public class Role extends AbstractEntity {
 
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-	protected Set<User> users;
+	protected Set<User> users = Collections.emptySet();
 
 
 	public String getRole() {

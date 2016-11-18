@@ -19,20 +19,26 @@ public class DefaultUserService implements UserService {
 	protected final PasswordEncoder passwordEncoder;
 
 
+	protected final RoleService roleService;
+
+
 	protected final UserRepository userRepository;
 
 
-	public DefaultUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public DefaultUserService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
+		this.roleService = roleService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 
 	@Override
 	public void create(String username, String password) {
+
 		final User user = new User();
 		user.setUsername(username);
 		user.setPassword(passwordEncoder.encode(password));
+		user.setRoles(roleService.getDefaultRoles());
 
 		LOGGER.debug("Saving user [{}] to data store", username);
 		final User savedUser = userRepository.save(user);
