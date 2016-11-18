@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.config;
+package com.github.egmerittech.web;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;

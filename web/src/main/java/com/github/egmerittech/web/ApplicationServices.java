@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.config;
+package com.github.egmerittech.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import com.github.egmerittech.web.service.UserService;
  * @author Greg Baker
  */
 @Configuration
-public class ServiceConfig {
+public class ApplicationServices {
 
 	@Bean
 	public RoleService roleService(RoleRepository roleRepository) {

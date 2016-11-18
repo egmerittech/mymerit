@@ -1,4 +1,4 @@
-	package com.github.egmerittech.web.config;
+	package com.github.egmerittech.web;
 
 import javax.sql.DataSource;
 
@@ -22,7 +22,7 @@ import com.github.egmerittech.web.security.JpaUserDetailsService;
  * @author Greg Baker
  */
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private Environment environment;
@@ -59,18 +59,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.frameOptions().disable()
 				.and()
 
+				// splash page should be unprotected
+				.authorizeRequests()
+					.antMatchers("/").permitAll()
+					.antMatchers("/sign-in").permitAll()
+					.antMatchers("/sign-up").permitAll()
+					.antMatchers("/sign-out").permitAll()
+					.and()
+
 			// resources requiring specific roles
 			.authorizeRequests()
 				.antMatchers("/auth/**").hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
-				.and()
-
-			// splash page should be unprotected
-			.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/sign-in").permitAll()
-				.antMatchers("/sign-up").permitAll()
-				.antMatchers("/sign-out").permitAll()
 				.and()
 
 			// resources requiring authentication but no specific roles
