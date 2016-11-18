@@ -1,4 +1,4 @@
-	package com.github.egmerittech.web;
+	package com.github.egmerittech.web.config;
 
 import javax.sql.DataSource;
 
@@ -22,7 +22,7 @@ import com.github.egmerittech.web.security.JpaUserDetailsService;
  * @author Greg Baker
  */
 @Configuration
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private Environment environment;

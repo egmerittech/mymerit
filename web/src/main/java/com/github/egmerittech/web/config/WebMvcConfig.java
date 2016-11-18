@@ -1,4 +1,4 @@
-package com.github.egmerittech.web;
+package com.github.egmerittech.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author Greg Baker
  */
 @Configuration
-public class ApplicationWebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	@Qualifier("securityPrincipalInterceptor")
