@@ -13,7 +13,7 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String index(Principal principal) {
-		if (principal == null) { return "redirect:/auth/sign-in"; }
+		if (principal == null) { return "redirect:/sign-in"; }
 		return "/index";
 	}
 

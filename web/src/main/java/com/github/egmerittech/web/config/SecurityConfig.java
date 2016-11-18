@@ -61,15 +61,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 			// resources requiring specific roles
 			.authorizeRequests()
+				.antMatchers("/auth/**").hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.and()
 
 			// splash page should be unprotected
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				.antMatchers("/auth/sign-in").permitAll()
-				.antMatchers("/auth/sign-up").permitAll()
-				.antMatchers("/auth/sign-out").permitAll()
+				.antMatchers("/sign-in").permitAll()
+				.antMatchers("/sign-up").permitAll()
+				.antMatchers("/sign-out").permitAll()
 				.and()
 
 			// resources requiring authentication but no specific roles
@@ -78,13 +79,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 
 			.formLogin()
-				.loginPage("/auth/sign-in")
-				.failureUrl("/auth/sign-in?status=autherror")
+				.loginPage("/sign-in")
+				.failureUrl("/sign-in?status=autherror")
 				.and()
 
 			.logout()
-				.logoutUrl("/auth/sign-out")
-				.logoutSuccessUrl("/auth/sign-in?status=signedout")
+				.logoutUrl("/sign-out")
+				.logoutSuccessUrl("/sign-in?status=signedout")
 				.and()
 
 			.rememberMe()
@@ -93,6 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 
 			.exceptionHandling()
+				// TODO - implement this
 				.accessDeniedPage("/access-denied");
 	}
 

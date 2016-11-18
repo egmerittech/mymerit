@@ -22,14 +22,14 @@
 							<li><a href="${contextroot}/auth/profile">Your profile</a></li>
 							<li><a href="${contextroot}/help">Help</a></li>
 							<li class="divider"/>
-							<li><a href="${contextroot}/auth/sign-out">Sign out</a></li>
+							<li><a href="${contextroot}/sign-out">Sign out</a></li>
 						</ul>
 					</li>
 				</ul>
 			<#else/>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${contextroot}/auth/sign-in">Sign in</a></li>
-					<li class="active"><a href="${contextroot}/auth/sign-up">Sign up</a></li>
+					<li><a href="${contextroot}/sign-in">Sign in</a></li>
+					<li class="active"><a href="${contextroot}/sign-up">Sign up</a></li>
 				</ul>
 			</#if>
 		</div>
