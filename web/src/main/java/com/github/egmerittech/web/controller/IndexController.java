@@ -13,9 +13,7 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String index(Principal principal) {
-		if (principal == null) { return "redirect:auth/sign-up"; }
-
-//		model.addAttribute("command", new SignupBean());
+		if (principal == null) { return "redirect:/auth/sign-in"; }
 		return "/index";
 	}
 

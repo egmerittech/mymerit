@@ -59,15 +59,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 				.frameOptions().disable()
 				.and()
 
-			// splash page should be unprotected
-			.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/auth/sign-up").permitAll()
-				.and()
-
 			// resources requiring specific roles
 			.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.and()
+
+			// splash page should be unprotected
+			.authorizeRequests()
+				.antMatchers("/").permitAll()
+				.antMatchers("/auth/sign-in").permitAll()
+				.antMatchers("/auth/sign-up").permitAll()
+				.antMatchers("/auth/sign-out").permitAll()
 				.and()
 
 			// resources requiring authentication but no specific roles
@@ -78,13 +80,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/auth/sign-in")
 				.failureUrl("/auth/sign-in?status=autherror")
-				.permitAll()
 				.and()
 
 			.logout()
 				.logoutUrl("/auth/sign-out")
 				.logoutSuccessUrl("/auth/sign-in?status=signedout")
-				.permitAll()
 				.and()
 
 			.rememberMe()
