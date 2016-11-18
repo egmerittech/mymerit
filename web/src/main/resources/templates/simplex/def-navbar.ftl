@@ -16,7 +16,7 @@
 					<li class="active dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"/></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a>Signed in as <strong>Greg Baker</strong></a></li>
+							<li><a>Signed in as <strong>${user.firstname} ${user.lastname}</strong></a></li>
 							<li class="divider"/>
 							<li><a href="#">Your profile</a></li>
 							<li><a href="#">Help</a></li>

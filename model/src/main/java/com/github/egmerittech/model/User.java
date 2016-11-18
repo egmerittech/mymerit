@@ -1,6 +1,5 @@
 package com.github.egmerittech.model;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +18,14 @@ import javax.persistence.PrePersist;
 @SuppressWarnings("serial")
 public class User extends AbstractEntity {
 
+	@Column(nullable = false)
+	protected String firstname;
+
+
+	@Column(nullable = false)
+	protected String lastname;
+
+
 	@Column(unique = true, nullable = false)
 	protected String username;
 
@@ -35,7 +42,7 @@ public class User extends AbstractEntity {
 
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") }) 
+	@JoinTable(joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	protected Set<Role> roles;
 
 
@@ -46,8 +53,28 @@ public class User extends AbstractEntity {
 		enabled = Boolean.TRUE;
 		validated = Boolean.FALSE;
 	}
-	
-	
+
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	public String getLastname() {
+		return lastname;
+	}
+
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+
 	public String getUsername() {
 		return username;
 	}
