@@ -21,7 +21,7 @@ import com.github.egmerittech.web.security.JpaUserDetailsService;
  * @author Greg Baker
  */
 @EnableWebSecurity
-public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
