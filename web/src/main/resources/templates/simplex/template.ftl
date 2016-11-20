@@ -16,6 +16,7 @@
 			<title>${windowtitle}</title>
 
 			<link rel="stylesheet" href="${contextroot}/assets/css/bootstrap.min.css">
+			<link rel="stylesheet" href="${contextroot}/assets/css/font-awesome.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
 			${additionalstylesheets}
 		</head>

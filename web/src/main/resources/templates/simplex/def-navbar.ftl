@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${contextroot}">myMerit</a>
+			<a class="navbar-brand" href="${contextroot}"><i class="fa fa-trophy"></i> myMerit</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -15,7 +15,7 @@
 				<#assign name><#if principal.firstname?? && principal.lastname??>${principal.firstname} ${principal.lastname}<#else/>${principal.username}</#if></#assign>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${name} <span class="caret"/></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> ${name} <span class="caret"/></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="${contextroot}/auth/profile">Your profile</a></li>
 							<li><a href="${contextroot}/help">Help</a></li>
@@ -26,8 +26,8 @@
 				</ul>
 			<#else/>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="${contextroot}/sign-up"><span class="glyphicon glyphicon-user"></span> Create account</a></li>
-					<li><a href="${contextroot}/sign-in"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+					<li class="active"><a href="${contextroot}/sign-up"><i class="fa fa-user-plus"></i> Create account</a></li>
+					<li><a href="${contextroot}/sign-in"><i class="fa fa-sign-in"></i> Sign in</a></li>
 				</ul>
 			</#if>
 		</div>
