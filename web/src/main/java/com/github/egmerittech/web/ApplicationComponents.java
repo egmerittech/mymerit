@@ -16,7 +16,7 @@ import com.github.egmerittech.web.interceptor.SecurityPrincipalInterceptor;
 @EnableWebSecurity
 @EntityScan({ "com.github.egmerittech.model" })
 @Import({ com.github.egmerittech.repository.Module.class })
-public class ApplicationConfig {
+public class ApplicationComponents {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
