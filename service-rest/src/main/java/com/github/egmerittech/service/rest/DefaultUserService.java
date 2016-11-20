@@ -55,8 +55,7 @@ public class DefaultUserService implements UserService {
 
 
 	@Override
-	public void create(String username, String password) {
-
+	public User create(String username, String password) {
 		final User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -65,6 +64,8 @@ public class DefaultUserService implements UserService {
 		LOGGER.debug("Saving user [{}] to data store", username);
 		final User savedUser = userRepository.save(user);
 		LOGGER.debug("Successfully saved user; username=[{}], id=[{}]", username, savedUser.getId());
+
+		return user;
 	}
 
 
