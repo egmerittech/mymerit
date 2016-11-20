@@ -22,9 +22,9 @@
 		</head>
 
 		<body>
-			<#include "def-navbar.ftl"/>
-			<#include "def-header.ftl"/>
-			<#include "def-alerts.ftl"/>
+			<#include "def-navbar.ftlh"/>
+			<#include "def-header.ftlh"/>
+			<#include "def-alerts.ftlh"/>
 			
 			<div class="container">
 				<main class="row">
@@ -34,7 +34,7 @@
 				</main>
 			</div>
 			
-			<#include "def-footer.ftl"/>
+			<#include "def-footer.ftlh"/>
 
 			<script src="${contextroot}/assets/js/jquery.min.js"></script>
 			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
