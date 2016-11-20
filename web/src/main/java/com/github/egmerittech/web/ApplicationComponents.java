@@ -1,6 +1,7 @@
 package com.github.egmerittech.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -57,9 +58,9 @@ public class ApplicationComponents {
 
 
 	@Bean
+	@ConditionalOnProperty("mymerit.sendverifcationemail")
 	public ApplicationListener<SignupEvent> signupEventListener(MailSender mailSender) {
 		final SignupEventListener eventListener = new SignupEventListener(mailSender, emailTokenRepository);
-		eventListener.setSendVerificationEmail(environment.getProperty("mymerit.signupeventlistener.sendverifcationemail", Boolean.class));
 		eventListener.setExpiryTimeDays(environment.getProperty("mymerit.emailtoken.expirytimedays", Integer.class));
 		return eventListener;
 	}

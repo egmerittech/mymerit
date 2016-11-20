@@ -25,9 +25,6 @@ public class SignupEventListener implements ApplicationListener<SignupEvent> {
 	protected EmailTokenRepository emailTokenRepository;
 
 
-	protected boolean sendVerificationEmail;
-
-
 	protected int expiryTimeDays = EXPIRY_TIME_DAYS_DEFAULT;
 
 
@@ -39,8 +36,6 @@ public class SignupEventListener implements ApplicationListener<SignupEvent> {
 
 	@Override
 	public void onApplicationEvent(SignupEvent event) {
-		if (sendVerificationEmail == false) { return; }
-
 		final User user = event.getUser();
 		final String url = event.getUrl();
 
@@ -65,11 +60,6 @@ public class SignupEventListener implements ApplicationListener<SignupEvent> {
 
 	public void setExpiryTimeDays(int expiryTimeDays) {
 		this.expiryTimeDays = expiryTimeDays;
-	}
-
-
-	public void setSendVerificationEmail(boolean sendVerificationEmail) {
-		this.sendVerificationEmail = sendVerificationEmail;
 	}
 
 }

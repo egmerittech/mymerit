@@ -105,6 +105,14 @@ public class AuthenticationController {
 	}
 
 
+	// TODO finish this
+	@GetMapping("/validate-email")
+	public String validateEmail(String token) {
+		LOGGER.debug("Dispatching /sign-up");
+		return "/sign-up";
+	}
+
+
 	protected void authenticateUser(User user, HttpServletRequest request) {
 		final UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 		authenticationToken.setDetails(new WebAuthenticationDetails(request));
