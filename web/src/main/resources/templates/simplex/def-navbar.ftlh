@@ -26,8 +26,8 @@
 				</ul>
 			<#else/>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="${contextroot}/sign-up"><i class="fa fa-user-plus"></i> Create account</a></li>
-					<li><a href="${contextroot}/sign-in"><i class="fa fa-sign-in"></i> Sign in</a></li>
+					<#if showsignup><li class="active"><a href="${contextroot}/sign-up"><i class="fa fa-user-plus"></i> Create account</a></li></#if>
+					<#if showsignin><li><a href="${contextroot}/sign-in"><i class="fa fa-sign-in"></i> Sign in</a></li></#if>
 				</ul>
 			</#if>
 		</div>

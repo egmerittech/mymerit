@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#import "/macros/bootstrap.ftlh" as bootstrap/>
 <#import "/macros/template.ftlh" as template/>
-<@template.render pagetitle="Join myMerit">
+<@template.render pagetitle="Join myMerit" showsignup=false>
 	<div class="well">
 		<form name="user" method="post">
 			<fieldset>

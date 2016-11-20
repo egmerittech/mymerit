@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#assign contextroot>${rc.contextPath}</#assign>
 
-<#macro render windowtitle pagetitle pagesubtitle="" additionalstylesheets="" additionalscripts="">
+<#macro render windowtitle pagetitle pagesubtitle="" additionalstylesheets="" additionalscripts="" showsignin=true showsignup=true>
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>

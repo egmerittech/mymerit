@@ -59,23 +59,15 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.frameOptions().disable()
 				.and()
 
-				// splash page should be unprotected
-				.authorizeRequests()
-					.antMatchers("/").permitAll()
-					.antMatchers("/sign-in").permitAll()
-					.antMatchers("/sign-up").permitAll()
-					.antMatchers("/sign-out").permitAll()
-					.and()
-
 			// resources requiring specific roles
 			.authorizeRequests()
 				.antMatchers("/auth/**").hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.and()
 
-			// resources requiring authentication but no specific roles
+				// splash page should be unprotected
 			.authorizeRequests()
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				.and()
 
 			.formLogin()

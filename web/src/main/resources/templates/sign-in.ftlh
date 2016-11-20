@@ -1,5 +1,5 @@
 <#import "/macros/template.ftlh" as template/>
-<@template.render pagetitle="Sign in to myMerit">
+<@template.render pagetitle="Sign in to myMerit" showsignin=false>
 	<div class="well">
 		<form method="post">
 			<fieldset>
