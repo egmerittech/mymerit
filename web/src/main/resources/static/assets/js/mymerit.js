@@ -15,7 +15,7 @@ function ajaxlogin(url) {
 		error : function (response) {
 			$("#signin-form-error-alert").html(
 				$("<div>").addClass("alert alert-danger alert-dismissible fade in").html([
-					$("<button>").addClass("close").attr("data-dismiss", "alert").html("&times;"),
+					$("<button>").addClass("close").attr("data-dismiss", "alert").attr("aria-hidden", "true").html("&times;"),
 					$("<p>").text(response.responseJSON["errorMsg"])
 				])
 			);
