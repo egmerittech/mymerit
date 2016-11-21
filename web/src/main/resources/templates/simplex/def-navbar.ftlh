@@ -5,7 +5,7 @@
 				<i class="fa fa-bars fa-fw" aria-hidden="true"></i> Menu
 				<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a class="navbar-brand" href="${contextroot}"><i class="fa fa-trophy fa-fw" aria-hidden="true"></i> myMerit</a>
+			<a class="navbar-brand" href="${contextRoot}"><i class="fa fa-trophy fa-fw" aria-hidden="true"></i> myMerit</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,26 +23,26 @@
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">Signed in as <strong>${principal.username}</strong></li>
 							<li class="divider"/>
-							<li><a href="${contextroot}/auth/profile"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit your profile</a></li>
-							<li><a href="${contextroot}/help"><i class="fa fa-question fa-fw" aria-hidden="true"></i> Help</a></li>
+							<li><a href="${contextRoot}/auth/profile"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit your profile</a></li>
+							<li><a href="${contextRoot}/help"><i class="fa fa-question fa-fw" aria-hidden="true"></i> Help</a></li>
 							<li class="divider" aria-hidden="true"/>
-							<li><a href="${contextroot}/help"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Settings</a></li>
-							<li><a href="${contextroot}/sign-out"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Sign out</a></li>
+							<li><a href="${contextRoot}/help"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Settings</a></li>
+							<li><a href="${contextRoot}/sign-out"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Sign out</a></li>
 						</ul>
 					</li>
 				</#if>
-				<#if showsignup && (principal?? == false)><li><a href="${contextroot}/sign-up"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Create account</a></li></#if>
-				<#if showsignin && (principal?? == false)><li><a href="#" data-toggle="modal" data-target="#signin-modal"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a></li></#if>
+				<#if showSignup && (principal?? == false)><li><a href="${contextRoot}/sign-up"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Create account</a></li></#if>
+				<#if showSignin && (principal?? == false)><li><a href="#" data-toggle="modal" data-target="#signin-modal"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a></li></#if>
 			</ul>
 		</div>
 	</div>
 </nav>
 
-<#if showsignin && (principal?? == false)>
+<#if showSignin && (principal?? == false)>
 	<#include "../modals/signin-modal.ftlh"/>
 	
-	<#assign scripts>
-		${scripts}
+	<#assign templateScripts>
+		${templateScripts}
 		
 		<script>
 			function ajaxlogin(url) {
@@ -68,14 +68,14 @@
 		
 			$("#signin-form-ajax").submit(function(event) {
 				event.preventDefault();
-				ajaxlogin("${contextroot}/sign-in?ajax");
+				ajaxlogin("${contextRoot}/sign-in?ajax");
 			});
 		</script>
 	</#assign>
 </#if>
 
 <#-- 
-<#if showsignup && (principal?? == false)>
+<#if showSignup && (principal?? == false)>
 	<#include "../modals/signup-modal.ftlh"/>
 
 	<#assign scripts>

@@ -1,34 +1,33 @@
 <#import "/spring.ftl" as spring/>
-<#assign contextroot>${rc.contextPath}</#assign>
 
-<#macro render windowtitle pagetitle pagesubtitle=""
-		additionalmetadata="" additionalstylesheets=""
-		additionalscripts="" showsignin=true showsignup=true>
-	<#assign metadata = additionalmetadata/>
-	<#assign stylesheets = additionalstylesheets/>
-	<#assign scripts = additionalscripts/>
+<#macro render windowTitle="" pageTitle="" pageSubtitle=""
+		pageMetadata="" pageStyles="" pageScripts=""
+		showSignin=true showSignup=true
+		contextRoot="" charset="utf-8"
+		alertMsg="" alertType="">
+		
+	<#assign templateMetadata></#assign>
+	<#assign templateStyles></#assign>
+	<#assign templateScripts></#assign>
+	
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			<meta charset="utf-8">
+			<meta charset="${charset}">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 
-			<meta name="description" content="">
-			<meta name="author" content="Greg Baker">
+			${templateMetadata}
+			${pageMetadata}
 			
-			<!-- additional metadata below -->
-			${metadata}
-			
-			<title>${windowtitle}</title>
+			<title>${windowTitle}</title>
 
-			<link rel="icon" href="${contextroot}/assets/favicon.ico">
-			<link rel="stylesheet" href="${contextroot}/assets/css/bootstrap.min.css">
-			<link rel="stylesheet" href="${contextroot}/assets/css/font-awesome.min.css">
-			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
+			<link rel="icon" href="${contextRoot}/assets/favicon.ico">
+			<link rel="stylesheet" href="${contextRoot}/assets/css/bootstrap.min.css">
+			<link rel="stylesheet" href="${contextRoot}/assets/css/font-awesome.min.css">
 			
-			<!-- additional stylesheets below -->
-			${stylesheets}
+			${templateStyles}
+			${pageStyles}
 		</head>
 
 		<body>
@@ -53,14 +52,13 @@
 			
 			<#include "def-footer.ftlh"/>
 
-			<script src="${contextroot}/assets/js/jquery.min.js"></script>
-			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
-			<script src="${contextroot}/assets/js/mymerit.js"></script>
+			<script src="${contextRoot}/assets/js/jquery.min.js"></script>
+			<script src="${contextRoot}/assets/js/bootstrap.min.js"></script>
+
+			${templateScripts}
+			${pageScripts}
 			
 			<script>$(document).ready(function() { $("[data-toggle=tooltip]").tooltip(); })</script>
-
-			<!-- additional scripts below -->
-			${scripts}
 		</body>
 	</html>
 </#macro>

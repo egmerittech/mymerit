@@ -1,21 +1,10 @@
 <div class="container" id="alerts">
-	<#if dangerAlert??>
+	<#if (alertMsg)?has_content>
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="alert alert-dismissible alert-danger">
+				<div class="alert alert-dismissible ${alertType}">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<@spring.message dangerAlert/>
-				</div>
-			</div>
-		</div>
-	</#if>
-	
-	<#if successAlert??>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<@spring.message successAlert/>
+					<@spring.message alertMsg/>
 				</div>
 			</div>
 		</div>

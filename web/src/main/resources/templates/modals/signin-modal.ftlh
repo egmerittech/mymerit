@@ -1,7 +1,7 @@
 <div class="modal fade" id="signin-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="signin-form-ajax" action="${contextroot}/sign-in" method="post">
+			<form id="signin-form-ajax" action="${contextRoot}/sign-in" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Sign in to myMerit</h4>
