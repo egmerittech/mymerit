@@ -14,12 +14,10 @@ import org.springframework.mail.MailSender;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.github.egmerittech.repository.EmailTokenRepository;
 import com.github.egmerittech.web.event.SignupEvent;
 import com.github.egmerittech.web.event.SignupEventListener;
-import com.github.egmerittech.web.interceptor.SecurityPrincipalInterceptor;
 
 /**
  * @author Greg Baker
@@ -40,12 +38,6 @@ public class ApplicationComponents {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
-
-
-	@Bean
-	public HandlerInterceptor securityPrincipalInterceptor() {
-		return new SecurityPrincipalInterceptor();
 	}
 
 

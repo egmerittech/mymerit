@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.controller;
+package com.github.egmerittech.web.controller.auth;
 
 import java.security.Principal;
 
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author Greg Baker
  */
-@Controller("/")
+@Controller("/auth")
 public class IndexController {
 
-	@GetMapping("/")
+	@GetMapping("/auth")
 	public String index(Principal principal) {
-		return "/index";
+		return "/auth/index";
 	}
 
 }

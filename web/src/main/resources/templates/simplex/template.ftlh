@@ -1,7 +1,9 @@
 <#import "/spring.ftl" as spring/>
 <#assign contextroot>${rc.contextPath}</#assign>
 
-<#macro render windowtitle pagetitle pagesubtitle="" additionalstylesheets="" additionalscripts="" showsignin=true showsignup=true>
+<#macro render windowtitle pagetitle pagesubtitle=""
+		additionalmetadata="" additionalstylesheets=""
+		additionalscripts="" showsignin=true showsignup=true>
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -11,10 +13,11 @@
 
 			<meta name="description" content="">
 			<meta name="author" content="Greg Baker">
-			<link rel="icon" href="${contextroot}/assets/favicon.ico">
-
+			${additionalmetadata}
+			
 			<title>${windowtitle}</title>
 
+			<link rel="icon" href="${contextroot}/assets/favicon.ico">
 			<link rel="stylesheet" href="${contextroot}/assets/css/bootstrap.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/font-awesome.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
@@ -28,7 +31,8 @@
 			
 			<div class="container">
 				<main class="row">
-					<div class="col-lg-12">
+					<#include "def-sidebar.ftlh"/>
+					<div class="col-lg-9 col-md-9 col-sm-8">
 						<#nested/>
 					</div>
 				</main>
