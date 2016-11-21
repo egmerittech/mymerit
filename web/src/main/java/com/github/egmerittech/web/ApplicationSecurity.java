@@ -94,7 +94,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 			.logout()
 				.logoutUrl("/sign-out")
-				.logoutSuccessUrl("/sign-in?status=signedout")
+				.logoutSuccessUrl("/?status=signedout")
 				.and()
 
 			.rememberMe()

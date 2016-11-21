@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$("[data-toggle='tooltip']").tooltip();
+});
+
 function ajaxlogin(url) {
 	$.ajax({
 		method : "POST",
@@ -9,11 +13,11 @@ function ajaxlogin(url) {
 			$(location).attr("href", response["successUrl"]);
 		},
 		error : function (response) {
-			$("#signin-form-ajax #signin-msg").html(
-				"<div class=\"alert alert-dismissible alert-danger\">" +
-				"	<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
-				"	<p>"+ response.responseJSON["errorMsg"] + "</p>" +
-				"</div>"
+			$("#signin-form-error-alert").html(
+				$("<div>").addClass("alert alert-danger alert-dismissible fade in").html([
+					$("<button>").addClass("close").attr("data-dismiss", "alert").html("&times;"),
+					$("<p>").text(response.responseJSON["errorMsg"])
+				])
 			);
 		}
 	});

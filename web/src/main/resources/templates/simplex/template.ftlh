@@ -35,10 +35,16 @@
 			
 			<div class="container">
 				<main class="row">
-					<#include "def-sidebar.ftlh"/>
-					<div class="col-lg-9 col-md-9 col-sm-8">
-						<#nested/>
-					</div>
+					<#if principal??>				
+						<#include "def-sidebar.ftlh"/>
+						<div class="col-lg-9 col-md-9 col-sm-8">
+							<#nested/>
+						</div>
+					<#else/>
+						<div class="col-lg-12">
+							<#nested/>
+						</div>
+					</#if>
 				</main>
 			</div>
 			

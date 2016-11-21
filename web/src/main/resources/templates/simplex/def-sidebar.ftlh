@@ -1,14 +1,7 @@
 <div class="col-lg-3 col-md-3 col-sm-4">
-	<div class="list-group table-of-contents">
-		<a class="list-group-item" href="#navbar">Navbar</a>
-		<a class="list-group-item" href="#buttons">Buttons</a>
-		<a class="list-group-item" href="#typography">Typography</a>
-		<a class="list-group-item" href="#tables">Tables</a>
-		<a class="list-group-item" href="#forms">Forms</a>
-		<a class="list-group-item" href="#navs">Navs</a>
-		<a class="list-group-item" href="#indicators">Indicators</a>
-		<a class="list-group-item" href="#progress-bars">Progress bars</a>
-		<a class="list-group-item" href="#containers">Containers</a>
-		<a class="list-group-item" href="#dialogs">Dialogs</a>
+	<div class="list-group">
+		<a class="list-group-item" href="${contextroot}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a>
+		<a class="list-group-item" href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Your Family</a>
+		<a class="list-group-item" href="#"><i class="fa fa-shopping-basket fa-fw" aria-hidden="true"></i> Reward shop</a>
 	</div>
 </div>
