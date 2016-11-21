@@ -34,7 +34,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 		if (user == null) {
 			LOGGER.debug("User with username [{}] not found", username);
-			return null;
+			throw new UsernameNotFoundException("Username " + username + " not found");
 		}
 
 		return new JpaUser(user);

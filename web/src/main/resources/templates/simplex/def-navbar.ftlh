@@ -39,13 +39,14 @@
 	<div class="modal fade" id="login-modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="signin-form" action="${contextroot}/sign-in" method="post">
+				<form id="signin-form-ajax" action="${contextroot}/sign-in" method="post">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<button type="button" class="close fade" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Sign in to myMerit</h4>
 					</div>
 					<div class="modal-body">
-						<div class="well mrgn-bttm-0">
+						<div id="signin-msg"></div>
+						<div class="well">
 							<div class="form-group ">
 								<label for="username" class="control-label">Email Address</label>
 								<input type="email" id="username" name="username" class="form-control" placeholder="Email Address" required>

@@ -50,9 +50,9 @@
 
 			<#if showsignin && principal?? == false>
 				<script>
-					$("#signin-form").submit(function(event) {
+					$("#signin-form-ajax").submit(function(event) {
 						event.preventDefault();
-						ajaxlogin("${contextroot}/sign-in");
+						ajaxlogin("${contextroot}/sign-in?ajax");
 					});
 				</script>
 			</#if>

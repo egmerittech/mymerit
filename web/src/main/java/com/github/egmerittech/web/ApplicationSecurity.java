@@ -3,6 +3,7 @@
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.servlet.LocaleResolver;
 
 import com.github.egmerittech.repository.UserRepository;
 import com.github.egmerittech.web.authentication.DefaultAuthenticationFailureHandler;
@@ -30,6 +32,14 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private Environment environment;
+
+
+	@Autowired
+	private LocaleResolver localeResolver;
+
+
+	@Autowired
+	private MessageSource messageSource;
 
 
 	@Autowired
@@ -75,10 +85,10 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.and()
 
 			.formLogin()
+				.loginPage("/sign-in")
 				.loginProcessingUrl("/sign-in")
 				.successHandler(authenticationSuccessHandler())
 				.failureHandler(authenticationFailureHandler())
-//				.loginPage("/sign-in")
 //				.failureUrl("/sign-in?status=autherror")
 				.and()
 
@@ -120,7 +130,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public AuthenticationFailureHandler authenticationFailureHandler() {
-		return new DefaultAuthenticationFailureHandler();
+		return new DefaultAuthenticationFailureHandler(messageSource, localeResolver);
 	}
 
 }

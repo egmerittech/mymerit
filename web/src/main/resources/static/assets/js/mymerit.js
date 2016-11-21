@@ -1,13 +1,20 @@
 function ajaxlogin(url) {
 	$.ajax({
 		method : "POST",
+		dataType : "json",
 		url : url,
-		data : $("#signin-form").serialize(),
+		data : $("#signin-form-ajax").serialize(),
 		success : function (response) {
-			window.location.href = response["successUrl"];
+			$("#login-modal").modal("hide");
+			$(location).attr("href", response["successUrl"]);
 		},
 		error : function (response) {
-			console.error("Login failure");
+			$("#signin-form-ajax #signin-msg").html(
+				"<div class=\"alert alert-dismissible alert-danger\">" +
+				"	<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+				"	<p>"+ response.responseJSON["errorMsg"] + "</p>" +
+				"</div>"
+			);
 		}
 	});
 }
