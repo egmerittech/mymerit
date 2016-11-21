@@ -4,6 +4,9 @@
 <#macro render windowtitle pagetitle pagesubtitle=""
 		additionalmetadata="" additionalstylesheets=""
 		additionalscripts="" showsignin=true showsignup=true>
+	<#assign metadata = additionalmetadata/>
+	<#assign stylesheets = additionalstylesheets/>
+	<#assign scripts = additionalscripts/>
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -15,7 +18,7 @@
 			<meta name="author" content="Greg Baker">
 			
 			<!-- additional metadata below -->
-			${additionalmetadata}
+			${metadata}
 			
 			<title>${windowtitle}</title>
 
@@ -36,10 +39,10 @@
 			<div class="container">
 				<main class="row">
 					<#if principal??>				
-						<#include "def-sidebar.ftlh"/>
 						<div class="col-lg-9 col-md-9 col-sm-8">
 							<#nested/>
 						</div>
+						<#include "def-sidebar.ftlh"/>
 					<#else/>
 						<div class="col-lg-12">
 							<#nested/>
@@ -53,18 +56,11 @@
 			<script src="${contextroot}/assets/js/jquery.min.js"></script>
 			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
 			<script src="${contextroot}/assets/js/mymerit.js"></script>
+			
+			<script>$(document).ready(function() { $("[data-toggle=tooltip]").tooltip(); })</script>
 
-			<#if showsignin && principal?? == false>
-				<script>
-					$("#signin-form-ajax").submit(function(event) {
-						event.preventDefault();
-						ajaxlogin("${contextroot}/sign-in?ajax");
-					});
-				</script>
-			</#if>
-						
 			<!-- additional scripts below -->
-			${additionalscripts}
+			${scripts}
 		</body>
 	</html>
 </#macro>
