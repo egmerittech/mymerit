@@ -13,6 +13,8 @@
 
 			<meta name="description" content="">
 			<meta name="author" content="Greg Baker">
+			
+			<!-- additional metadata below -->
 			${additionalmetadata}
 			
 			<title>${windowtitle}</title>
@@ -21,6 +23,8 @@
 			<link rel="stylesheet" href="${contextroot}/assets/css/bootstrap.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/font-awesome.min.css">
 			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
+			
+			<!-- additional stylesheets below -->
 			${additionalstylesheets}
 		</head>
 
@@ -43,6 +47,17 @@
 			<script src="${contextroot}/assets/js/jquery.min.js"></script>
 			<script src="${contextroot}/assets/js/bootstrap.min.js"></script>
 			<script src="${contextroot}/assets/js/mymerit.js"></script>
+
+			<#if showsignin && principal?? == false>
+				<script>
+					$("#signin-form").submit(function(event) {
+						event.preventDefault();
+						ajaxlogin("${contextroot}/sign-in");
+					});
+				</script>
+			</#if>
+						
+			<!-- additional scripts below -->
 			${additionalscripts}
 		</body>
 	</html>

@@ -1,21 +1,13 @@
-/*
-var options = [];
-$(".dropdown-menu a").on("click", function(event) {
-	var $target = $(event.currentTarget),
-	    val = $target.attr("data-value"),
-	    $inp = $target.find("input"),
-	    idx;
-
-	if((idx = options.indexOf(val)) > -1) {
-		options.splice(idx, 1);
-		setTimeout(function() { $inp.prop("checked", false) }, 0);
-	}
-	else {
-		options.push(val);
-		setTimeout(function() { $inp.prop("checked", true) }, 0);
-	}
-
-	$(event.target).blur();
-	return false;
-});
-*/
+function ajaxlogin(url) {
+	$.ajax({
+		method : "POST",
+		url : url,
+		data : $("#signin-form").serialize(),
+		success : function (response) {
+			window.location.href = response["successUrl"];
+		},
+		error : function (response) {
+			console.error("Login failure");
+		}
+	});
+}

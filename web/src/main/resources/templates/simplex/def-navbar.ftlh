@@ -39,7 +39,7 @@
 	<div class="modal fade" id="login-modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="sign-in" action="${contextroot}/sign-in" method="post">
+				<form id="signin-form" action="${contextroot}/sign-in" method="post">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Sign in to myMerit</h4>
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+						<button id="signin-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 					</div>
 				</form>
 			</div>

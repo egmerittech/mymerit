@@ -12,10 +12,14 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.github.egmerittech.repository.UserRepository;
+import com.github.egmerittech.web.authentication.DefaultAuthenticationFailureHandler;
+import com.github.egmerittech.web.authentication.DefaultAuthenticationSuccessHandler;
 import com.github.egmerittech.web.security.JpaUserDetailsService;
 
 /**
@@ -71,8 +75,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.and()
 
 			.formLogin()
-				.loginPage("/sign-in")
-				.failureUrl("/sign-in?status=autherror")
+				.loginProcessingUrl("/sign-in")
+				.successHandler(authenticationSuccessHandler())
+				.failureHandler(authenticationFailureHandler())
+//				.loginPage("/sign-in")
+//				.failureUrl("/sign-in?status=autherror")
 				.and()
 
 			.logout()
@@ -102,6 +109,18 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		final JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
 		persistentTokenRepository.setDataSource(dataSource);
 		return persistentTokenRepository;
+	}
+
+
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		return new DefaultAuthenticationSuccessHandler();
+	}
+
+
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		return new DefaultAuthenticationFailureHandler();
 	}
 
 }
