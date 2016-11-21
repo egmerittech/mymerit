@@ -31,15 +31,15 @@
 						</ul>
 					</li>
 				</#if>
-				<#if showsignup && (principal?? == false)><li class="active"><a href="${contextroot}/sign-up"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Create account</a></li></#if>
-				<#if showsignin && (principal?? == false)><li><a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a></li></#if>
+				<#if showsignup && (principal?? == false)><li><a href="${contextroot}/sign-up"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Create account</a></li></#if>
+				<#if showsignin && (principal?? == false)><li><a href="#" data-toggle="modal" data-target="#signin-modal"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a></li></#if>
 			</ul>
 		</div>
 	</div>
 </nav>
 
 <#if showsignin && (principal?? == false)>
-	<#include "../modals/login-modal.ftlh"/>
+	<#include "../modals/signin-modal.ftlh"/>
 	
 	<#assign scripts>
 		${scripts}
@@ -73,3 +73,13 @@
 		</script>
 	</#assign>
 </#if>
+
+<#-- 
+<#if showsignup && (principal?? == false)>
+	<#include "../modals/signup-modal.ftlh"/>
+
+	<#assign scripts>
+		${scripts}
+	</#assign>
+</#if>
+-->

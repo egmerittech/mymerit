@@ -96,11 +96,7 @@ public class AuthenticationController {
 
 	// TODO - I'm not sure using the model here is the appropriate way to alert
 	@GetMapping("/sign-in")
-	public String signIn(Model model, String status, String ajax) {
-		if (ajax != null) {
-			return "/modals/login-modal";
-		}
-
+	public String signIn(Model model, String status) {
 		if ("autherror".equals(status) == true) { model.addAttribute("dangerAlert", "signin.autherror"); }
 		if ("signedout".equals(status) == true) { model.addAttribute("successAlert", "signin.signedout"); }
 

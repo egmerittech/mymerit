@@ -28,7 +28,7 @@
 			<link rel="stylesheet" href="${contextroot}/assets/css/mymerit.css">
 			
 			<!-- additional stylesheets below -->
-			${additionalstylesheets}
+			${stylesheets}
 		</head>
 
 		<body>
