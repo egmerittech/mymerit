@@ -12,11 +12,13 @@
 			<#if principal??>
 				<ul class="nav navbar-nav navbar-right">
 					<li title="No notifications" data-toggle="tooltip" data-placement="bottom">
-						<a href="#"><i class="fa fa-bell-slash fa-fw"></i></a>
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-bell-slash fa-fw"></i> Notifications <i class="fa fa-caret-down fa-fw"></i>
+						</a>
 					</li>
 					<li class="active dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<i class="fa fa-user fa-fw"></i> ${principal.firstname} ${principal.lastname} <i class="fa fa-caret-down"></i>
+							<i class="fa fa-user fa-fw"></i> ${principal.firstname} ${principal.lastname} <i class="fa fa-caret-down fa-fw"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">Signed in as <strong>${principal.username}</strong></li>
@@ -67,7 +69,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="signin-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+						<button id="signin-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in to <i class="fa fa-trophy fa-fw"></i> myMerit</button>
 					</div>
 				</form>
 			</div>
