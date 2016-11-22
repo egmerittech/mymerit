@@ -18,7 +18,7 @@
 					</li>
 					<li class="active dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<i class="fa fa-user fa-fw" aria-hidden="true"></i> ${principal.firstname!} ${principal.lastname!} <i class="fa fa-caret-down fa-fw"></i>
+							<i class="fa fa-user fa-fw" aria-hidden="true"></i> ${principal.user.firstname!} ${principal.user.lastname!} <i class="fa fa-caret-down fa-fw"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">Signed in as <strong>${principal.username}</strong></li>

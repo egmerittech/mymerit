@@ -10,23 +10,28 @@
 				<#list family.familyMembers as familyMember>
 					<#if familyMember.familyMemberType == 'PARENT'><#assign css='panel-primary'/><#else/><#assign css='panel-info'/></#if>
 					<#if familyMember.familyMemberType == 'PARENT'><#assign glyph='fa-user-secret'/><#else/><#assign glyph='fa-child'/></#if>
-<div class="col-md-4">
-	<div class="panel ${css}">
-		<div class="panel-heading">
-			<h3 class="panel-title">${familyMember.user.firstname} ${familyMember.user.lastname}</h3>
-		</div>
-		<div class="panel-body">
-			<i class="fa ${glyph} fa-fw fa-2x" style="float:right"></i>
-			<dl>
-				<dt>Current balance:</dt>
-				<dd>$${familyMember.meritAccount.balance?string["0.00"]}</dd>
-				
-				<dt>Total spent:</dt>
-				<dd>$${0?string["0.00"]}</dd>
-			</dl>
-		</div>
-	</div>
-</div>
+					<div class="col-md-4">
+						<div class="panel ${css}">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<i class="fa ${glyph} fa-fw"></i> ${familyMember.user.firstname} ${familyMember.user.lastname}
+								</h3>
+							</div>
+							<div class="panel-body">
+								<dl>
+									<dt>Current balance:</dt>
+									<dd>$${familyMember.meritAccount.balance?string["0.00"]}</dd>
+									
+									<dt>Total spent:</dt>
+									<dd>$${0?string["0.00"]}</dd>
+								</dl>
+							</div>
+							<div class="panel-footer text-right">
+								<button type="button" class="btn btn-default"><i class="fa fa-history fa-fw"></i></button>
+								<button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o fa-fw"></i></button>
+							</div>
+						</div>
+					</div>
 				</#list>
 			</div>
 		</div>		
