@@ -12,4 +12,7 @@ public interface UserService {
 
 	boolean exists(String username);
 
+
+	User read(String username);
+
 }

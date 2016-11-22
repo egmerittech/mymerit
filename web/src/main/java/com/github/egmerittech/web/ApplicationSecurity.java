@@ -56,10 +56,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web
-			.ignoring()
-				.antMatchers("/assets/**")
-				.antMatchers("/h2-console/**");
+		/* placeholder for future customization */
 	}
 
 

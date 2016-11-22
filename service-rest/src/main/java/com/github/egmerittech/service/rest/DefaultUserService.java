@@ -58,4 +58,12 @@ public class DefaultUserService implements UserService {
 		return userExists;
 	}
 
+
+	@Override
+	public User read(String username) {
+		final User probe = new User();
+		probe.setUsername(username);
+		return userRepository.findOne(Example.of(probe));
+	}
+
 }

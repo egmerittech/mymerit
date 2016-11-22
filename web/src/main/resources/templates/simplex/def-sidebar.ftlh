@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-3 col-sm-4">
+<div id="nav-sidebar" class="col-lg-3 col-md-3 col-sm-4">
 	<div class="list-group">
 		<a class="list-group-item" href="${contextRoot}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a>
 		<a class="list-group-item" href="${contextRoot}/auth/my-family"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Your Family</a>
