@@ -3,7 +3,9 @@ package com.github.egmerittech.model;
 import java.util.Collections;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,7 +18,7 @@ public class Family extends AbstractEntity {
 	protected String familyName;
 
 
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "family", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	protected Set<FamilyMember> familyMembers = Collections.emptySet();
 
 

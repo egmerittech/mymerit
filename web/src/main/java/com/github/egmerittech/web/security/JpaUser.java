@@ -15,26 +15,16 @@ import com.github.egmerittech.model.User;
 @SuppressWarnings("serial")
 public class JpaUser extends org.springframework.security.core.userdetails.User {
 
-	final String firstname;
-
-
-	final String lastname;
-
+	final User user;
 
 	public JpaUser(User user) {
 		super(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, getAuthorities(user));
-		this.firstname = user.getFirstname();
-		this.lastname = user.getLastname();
+		this.user = user;
 	}
 
 
-	public String getFirstname() {
-		return firstname;
-	}
-
-
-	public String getLastname() {
-		return lastname;
+	public User getUser() {
+		return user;
 	}
 
 

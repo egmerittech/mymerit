@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Transient;
 
@@ -53,6 +54,10 @@ public class User extends AbstractEntity {
 
 	@Column(length = 2048)
 	protected String comment;
+
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	protected FamilyMember familyMember;
 
 
 	@Override
@@ -151,6 +156,16 @@ public class User extends AbstractEntity {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+
+	public FamilyMember getFamilyMember() {
+		return familyMember;
+	}
+
+
+	public void setFamilyMember(FamilyMember familyMember) {
+		this.familyMember = familyMember;
 	}
 
 }

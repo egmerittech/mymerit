@@ -1,8 +1,10 @@
 package com.github.egmerittech.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -16,19 +18,20 @@ public class FamilyMember extends AbstractEntity {
 	public enum Type { PARENT, CHILD }
 
 
-	@OneToOne
+	@OneToOne(optional = false)
+	protected User user;
+
+
+	@OneToOne(mappedBy = "familyMember", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	protected MeritAccount meritAccount;
 
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	protected Family family;
 
 
 	@Enumerated(EnumType.STRING)
 	protected FamilyMember.Type familyMemberType;
-
-
-	protected String username;
 
 
 	public Family getFamily() {
@@ -61,13 +64,13 @@ public class FamilyMember extends AbstractEntity {
 	}
 
 
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
 
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
