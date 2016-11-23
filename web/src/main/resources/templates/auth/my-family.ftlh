@@ -1,5 +1,6 @@
 <#import "/macros/template.ftlh" as template/>
-<@template.render pagetitle=family.familyName>
+<#assign contextRoot>${rc.contextPath}</#assign>
+<@template.render pagetitle=family.familyName pageMetadata="foo">
 	<div>
 		<h2>Family Members</h2>
 		<p>Add your family so everybody gets their own sign-in and profile.</p>
@@ -10,7 +11,7 @@
 					<#if familyMember.familyMemberType == 'PARENT'><#assign css='panel-primary'/><#else/><#assign css='panel-info'/></#if>
 					<#if familyMember.familyMemberType == 'PARENT'><#assign glyph='fa-user-secret'/><#else/><#assign glyph='fa-child'/></#if>
 					<div class="col-md-4 family-member">
-						<a href="#">
+						<a href="${contextRoot}/auth/view-member/${familyMember.user.id}">
 							<div class="panel ${css}">
 								<div class="panel-heading">
 									<h3 class="panel-title">
