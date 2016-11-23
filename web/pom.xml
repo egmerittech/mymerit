@@ -14,13 +14,12 @@
 	<artifactId>mymerit-web</artifactId>
 	<packaging>war</packaging>
 
+
 	<name>myMerit - Web Application</name>
 	<description>Web application for myMerit project.</description>
 
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
+
+	<properties/>
 
 
 	<dependencies>
