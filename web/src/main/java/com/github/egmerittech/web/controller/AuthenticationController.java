@@ -14,11 +14,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.egmerittech.model.User;
 import com.github.egmerittech.service.UserService;
@@ -47,6 +48,37 @@ public class AuthenticationController {
 
 	@Autowired
 	protected UserService userService;
+
+
+	@GetMapping(path = "/sign-in", params = { "ajax" })
+	public String signInAjax(String ajax) {
+		LOGGER.debug("Dispatching /modals/signin-modal");
+		return "/modals/signin-modal";
+	}
+
+
+	@GetMapping(path = "/sign-in", params = { "status" })
+	public String signInStatus(ModelMap model, @RequestParam(required = false) String status) {
+		if ("autherror".equals(status) == true) {
+			model.put("alertMsg", "signin.autherror");
+			model.put("alertType", "alert-danger");
+		}
+
+		if ("signedout".equals(status) == true) {
+			model.put("alertMsg", "signin.signedout");
+			model.put("alertType", "alert-info");
+		}
+
+		LOGGER.debug("Dispatching /sign-in");
+		return "/sign-in";
+	}
+
+
+	@GetMapping("/sign-in")
+	public String signIn() {
+		LOGGER.debug("Dispatching /sign-in");
+		return "/sign-in";
+	}
 
 
 	@GetMapping("/sign-up")
@@ -91,17 +123,6 @@ public class AuthenticationController {
 
 		LOGGER.debug("Redirecting to /");
 		return "redirect:/";
-	}
-
-
-	// TODO - I'm not sure using the model here is the appropriate way to alert
-	@GetMapping("/sign-in")
-	public String signIn(Model model, String status) {
-		if ("autherror".equals(status) == true) { model.addAttribute("dangerAlert", "signin.autherror"); }
-		if ("signedout".equals(status) == true) { model.addAttribute("successAlert", "signin.signedout"); }
-
-		LOGGER.debug("Dispatching /sign-in");
-		return "/sign-in";
 	}
 
 

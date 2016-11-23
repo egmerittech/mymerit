@@ -14,12 +14,11 @@
 	<script src="${contextRoot}/assets/js/mymerit.js"></script>
 </#assign>
 
-<#macro render windowtitle="" pagetitle="" pagesubtitle=""
-		additionalmetadata=metadata additionalstylesheets=styles additionalscripts=scripts
-		showsignin=true showsignup=true>
+<#macro render windowtitle="" pagetitle="" pagesubtitle="" pageMetadata="" pageStylesheets="" pageScripts="" showsignin=true showsignup=true>
 	<@simplex.render contextRoot=contextRoot windowTitle=windowtitle pageTitle=pagetitle pageSubtitle=pagesubtitle
-			pageMetadata=additionalmetadata pageStyles=additionalstylesheets pageScripts=additionalscripts
-			showSignin=showsignin showSignup=showsignup>
+			pageMetadata=additionalmetadata pageStyles=additionalstylesheets pageScripts=pageScripts
+			showSignin=showsignin showSignup=showsignup
+			alertMsg=alertMsg alertType=alertType>
 		<#nested/>
 	</@simplex.render>
 </#macro>

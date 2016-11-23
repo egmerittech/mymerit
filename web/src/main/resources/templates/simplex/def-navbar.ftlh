@@ -32,54 +32,25 @@
 					</li>
 				</#if>
 				<#if showSignup && (principal?? == false)><li><a href="${contextRoot}/sign-up"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Create account</a></li></#if>
-				<#if showSignin && (principal?? == false)><li><a href="#" data-toggle="modal" data-target="#signin-modal"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a></li></#if>
+				<#if showSignin && (principal?? == false)>
+					<li>
+						<a id="signin-link" href="${contextRoot}/sign-in?ajax" data-toggle="modal" data-target="#signin-modal" data-remote="false"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Sign in</a>
+					</li>
+				</#if>
 			</ul>
 		</div>
 	</div>
 </nav>
 
+<div class="modal fade" id="signin-modal"></div>
+
 <#if showSignin && (principal?? == false)>
-	<#include "../modals/signin-modal.ftlh"/>
-	
 	<#assign templateScripts>
 		${templateScripts}
-		
 		<script>
-			function ajaxlogin(url) {
-				$.ajax({
-					method : "POST",
-					dataType : "json",
-					url : url,
-					data : $("#signin-form-ajax").serialize(),
-					success : function (response) {
-						$("#login-modal").modal("hide");
-						$(location).attr("href", response["successUrl"]);
-					},
-					error : function (response) {
-						$("#signin-form-error-alert").html(
-							$("<div>").addClass("alert alert-danger alert-dismissible fade in").html([
-								$("<button>").addClass("close").attr("data-dismiss", "alert").attr("aria-hidden", "true").attr("type", "button").html("&times;"),
-								$("<p>").text(response.responseJSON["errorMsg"])
-							])
-						);
-					}
-				});
-			}	
-		
-			$("#signin-form-ajax").submit(function(event) {
-				event.preventDefault();
-				ajaxlogin("${contextRoot}/sign-in?ajax");
+			$("#signin-modal").on("show.bs.modal", function() {
+				$("#signin-modal").load($("#signin-link").attr("href"));
 			});
 		</script>
 	</#assign>
 </#if>
-
-<#-- 
-<#if showSignup && (principal?? == false)>
-	<#include "../modals/signup-modal.ftlh"/>
-
-	<#assign scripts>
-		${scripts}
-	</#assign>
-</#if>
--->

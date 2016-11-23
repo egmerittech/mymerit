@@ -1,7 +1,18 @@
 <#import "/macros/template.ftlh" as template/>
-<@template.render pagetitle="Sign in to myMerit" showsignin=false>
+<#assign contextRoot>${rc.contextPath}</#assign>
+
+<#assign pageScripts>
+	<script>
+		$("#signin-form").submit(function(event) {
+			$("#mymerit-button-logo").removeClass("fa-trophy");
+			$("#mymerit-button-logo").addClass("fa-refresh fa-spin");
+		});	
+	</script>
+</#assign>
+
+<@template.render pagetitle="Sign in to myMerit" showsignin=false pageScripts=pageScripts>
 	<div class="well">
-		<form method="post">
+		<form id="signin-form" action="${contextRoot}/sign-in" method="post">
 			<fieldset>
 				<legend>Sign in</legend>
 				
@@ -21,7 +32,7 @@
 
 				<hr/>
 				
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button id="signin-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in to <i id="mymerit-button-logo" class="fa fa-trophy fa-fw" aria-hidden="true"></i> myMerit</button>
 			</fieldset>
 		</form>
 	</div>

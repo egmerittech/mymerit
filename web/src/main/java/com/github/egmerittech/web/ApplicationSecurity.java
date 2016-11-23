@@ -86,7 +86,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/sign-in")
 				.successHandler(authenticationSuccessHandler())
 				.failureHandler(authenticationFailureHandler())
-//				.failureUrl("/sign-in?status=autherror")
+				.failureUrl("/sign-in?status=autherror")
 				.and()
 
 			.logout()
