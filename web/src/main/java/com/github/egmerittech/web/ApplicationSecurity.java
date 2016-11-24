@@ -86,7 +86,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/sign-in")
 				.successHandler(authenticationSuccessHandler())
 				.failureHandler(authenticationFailureHandler())
-				.failureUrl("/sign-in?status=autherror")
 				.and()
 
 			.logout()
@@ -127,7 +126,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public AuthenticationFailureHandler authenticationFailureHandler() {
-		return new DefaultAuthenticationFailureHandler(messageSource, localeResolver);
+		final DefaultAuthenticationFailureHandler authenticationFailureHandler = new DefaultAuthenticationFailureHandler(messageSource, localeResolver);
+		authenticationFailureHandler.setDefaultFailureUrl("/sign-in?status=autherror");
+		return authenticationFailureHandler;
 	}
 
 }
