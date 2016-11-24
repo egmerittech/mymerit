@@ -1,6 +1,7 @@
 package com.github.egmerittech.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,6 +31,7 @@ public class FamilyMember extends AbstractEntity {
 	protected Family family;
 
 
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	protected FamilyMember.Type familyMemberType;
 

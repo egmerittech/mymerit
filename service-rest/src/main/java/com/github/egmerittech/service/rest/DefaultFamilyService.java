@@ -20,7 +20,7 @@ public class DefaultFamilyService implements FamilyService {
 
 	@Override
 	public Family getFamily(User user) {
-		return null;
+		throw new UnsupportedOperationException("not yet implemented");
 	}
 
 }

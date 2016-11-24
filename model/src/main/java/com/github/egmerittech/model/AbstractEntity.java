@@ -3,6 +3,7 @@ package com.github.egmerittech.model;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ public abstract class AbstractEntity implements Serializable {
 	protected Long id;
 
 
+	@Column(nullable = false)
 	protected Calendar dateCreated;
 
 

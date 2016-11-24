@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 @SuppressWarnings("serial")
 public class Family extends AbstractEntity {
 
+	@Column(nullable = false)
 	protected String familyName;
 
 

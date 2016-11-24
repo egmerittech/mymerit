@@ -1,5 +1,6 @@
 package com.github.egmerittech.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -9,12 +10,14 @@ import javax.persistence.Entity;
 @SuppressWarnings("serial")
 public class Prize extends AbstractEntity {
 
+	@Column(nullable = false)
 	protected String name;
 
 
 	protected String description;
 
 
+	@Column(nullable = false)
 	protected Double cost;
 
 

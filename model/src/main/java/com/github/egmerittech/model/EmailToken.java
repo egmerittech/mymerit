@@ -2,6 +2,7 @@ package com.github.egmerittech.model;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -9,13 +10,15 @@ import javax.persistence.OneToOne;
 @SuppressWarnings("serial")
 public class EmailToken extends AbstractEntity {
 
+	@Column(unique = true, nullable = false)
 	protected String token;
 
 
-	@OneToOne
+	@OneToOne(optional = false)
 	protected User user;
 
 
+	@Column(nullable = false)
 	protected Calendar expiryDate;
 
 
