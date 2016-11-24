@@ -1,4 +1,4 @@
-package com.github.egmerittech.web.authentication;
+package com.github.egmerittech.web.security.auth;
 
 import java.io.IOException;
 import java.util.HashMap;

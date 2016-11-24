@@ -20,9 +20,9 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.web.servlet.LocaleResolver;
 
 import com.github.egmerittech.repository.UserRepository;
-import com.github.egmerittech.web.authentication.DefaultAuthenticationFailureHandler;
-import com.github.egmerittech.web.authentication.DefaultAuthenticationSuccessHandler;
 import com.github.egmerittech.web.security.JpaUserDetailsService;
+import com.github.egmerittech.web.security.auth.DefaultAuthenticationFailureHandler;
+import com.github.egmerittech.web.security.auth.DefaultAuthenticationSuccessHandler;
 
 /**
  * @author Greg Baker
@@ -50,7 +50,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.userDetailsService(userDetailsService(null))
-			.passwordEncoder(passwordEncoder);
+				.passwordEncoder(passwordEncoder);
 	}
 
 
